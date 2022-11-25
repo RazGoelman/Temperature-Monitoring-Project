@@ -120,7 +120,7 @@
 
 **Temperature Task:**
 
-    ![image](https://user-images.githubusercontent.com/66781442/203984336-d14be378-8a2d-4d25-9ec4-ae72628b2d2a.png)
+   ![image](https://user-images.githubusercontent.com/66781442/203984336-d14be378-8a2d-4d25-9ec4-ae72628b2d2a.png)
 
 **Communication Task:**
 
@@ -139,7 +139,7 @@
 
 **Block diagram :**
 
-    ![image](https://user-images.githubusercontent.com/66781442/203984996-b71b63df-40f6-4a01-8063-c9678e22ba80.png)
+   ![image](https://user-images.githubusercontent.com/66781442/203984996-b71b63df-40f6-4a01-8063-c9678e22ba80.png)
 
 **System polymorphism:**
 

@@ -1,0 +1,2 @@
+../Core/Src/Btn.cpp:11:14:_buttonState Btn::getState()	16	static
+../Core/Src/Btn.cpp:12:7:void Btn::setState(_buttonState)	16	static

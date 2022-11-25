@@ -120,6 +120,20 @@
 
 **Temperature Task:**
 
+     The temperature task will check every 1 secound the sensor output and will active according to the returen temperature.
+      
+     The sensor defined in 4 levels:
+         
+       * Critical 
+         
+       * Warning 
+         
+       * Normal 
+         
+       * Error
+   
+     The temperature task will chack evry 1 ms the sensor output and will active according to the returen temperature
+
    ![image](https://user-images.githubusercontent.com/66781442/203984336-d14be378-8a2d-4d25-9ec4-ae72628b2d2a.png)
 
 **Communication Task:**

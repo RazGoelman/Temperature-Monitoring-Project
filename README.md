@@ -170,7 +170,6 @@
        
      Flash Task - SPI protocol
        
-     Led Task  - GPIO output
 
 **Led**  
 

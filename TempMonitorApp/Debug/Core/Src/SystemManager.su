@@ -9,7 +9,7 @@
 ../Core/Src/SystemManager.cpp:60:17:void StartDht(void*)	24	static
 ../Core/Src/SystemManager.cpp:105:17:void StartcommTask(void*)	16	static
 ../Core/Src/SystemManager.cpp:117:17:void StartLedTask(void*)	16	static
-../Core/Src/SystemManager.cpp:128:17:void StartFlashTask(void*)	16	static
-../Core/Src/SystemManager.cpp:134:1:void __static_initialization_and_destruction_0(int, int)	32	static
-../Core/Src/SystemManager.cpp:134:1:cpp)	8	static
-../Core/Src/SystemManager.cpp:134:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:129:17:void StartFlashTask(void*)	16	static
+../Core/Src/SystemManager.cpp:135:1:void __static_initialization_and_destruction_0(int, int)	32	static
+../Core/Src/SystemManager.cpp:135:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:135:1:cpp)	8	static

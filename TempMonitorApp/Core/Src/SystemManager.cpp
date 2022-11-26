@@ -46,7 +46,7 @@ void managerInit()
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	printf("right btn clicked\r\n");
+		//printf("right btn clicked\r\n");
 		if(button->getState() == BUTTON_PULLUP)
 		{
 			buzzer.buzzerStartPlay();
@@ -101,7 +101,7 @@ extern "C" void StartDht(void *argument)
 	//Required to exit the task function osThreadTerminate must be used
 	osThreadTerminate(osThreadGetId());
 }
-
+// this task will start the cli option for the user.
 extern "C" void StartcommTask(void *argument)
 {
 	/* Infinite loop */
@@ -125,6 +125,7 @@ extern "C" void StartLedTask(void *argument)
 	osThreadTerminate(osThreadGetId());
 
 }
+// this task will write the thresholds into the file.
 extern "C" void StartFlashTask(void *argument)
 {
 	for(;;){

@@ -10,6 +10,8 @@
 extern "C" {
 #endif
 
+#include "main.h"
+
 #define ONE_SECOND 1000
 #define DHT_DEVICE_ADDR 0xD0
 #define THRESHOLDS_PAGE_256 0x08080000
@@ -17,10 +19,12 @@ extern "C" {
 #define WORNINGTEMPERATURE 20.00
 #define CRITICALTEMPERATURE 29.00
 
-void measureTemp(void *argument);
+void StartDht(void *argument);
+void StartcommTask(void *argument);
 void managerInit();
-void LedTask(void *argument);
-
+void StartLedTask(void *argument);
+void StartFlashTask(void *argument);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 #ifdef __cplusplus
 }
 #endif

@@ -9,7 +9,7 @@
 #include <string.h>
 
 
-HAL_StatusTypeDef Flash :: erasePage()
+HAL_StatusTypeDef FLASHCORE :: erasePage()
 {
 	HAL_FLASH_Unlock();
 	FLASH_EraseInitTypeDef flashErase;
@@ -33,15 +33,15 @@ HAL_StatusTypeDef Flash :: erasePage()
 
 }
 
-HAL_StatusTypeDef Flash :: writeToPage(void* data, int dataSize)
+HAL_StatusTypeDef FLASHCORE :: writeToPage(void* data, int dataSize)
 {
 	HAL_StatusTypeDef status;
 	HAL_FLASH_Unlock();
 	int index = 0;
 	while (index < dataSize)
 	{
-		uint64_t Data =*(uint64_t*)(data+index); // add template
-		status = HAL_FLASH_Program(_typeProgram, _pageAddr+index, Data);
+		uint64_t Data =*(uint64_t*)(data + index);
+		status = HAL_FLASH_Program(_typeProgram, _pageAddr + index, Data);
 		if(status != HAL_OK)
 		{
 			return status;
@@ -49,69 +49,59 @@ HAL_StatusTypeDef Flash :: writeToPage(void* data, int dataSize)
 		index += sizeof(uint64_t);
 	}
 	HAL_FLASH_Lock();
-	//printf("%d\r\n", status);
+	printf("%d\r\n", status);
 	return status;
 }
 
-int Flash :: getWarning()
+int FLASHCORE :: getWarningThreshold()
 {
 	return _thresholds._warning;
 }
 
-int Flash :: getCritical()
+int FLASHCORE :: getCriticalThreshold()
 {
 	return _thresholds._critical;
 }
 
-void Flash :: setWarning(int warning)
+void FLASHCORE :: setWarningThreshold(int warning)
 {
-	_thresholds._warningUsed = DATA_IN_USED;
+	_thresholds._warningDataWating = DATA_WAITING;
 	_thresholds._warning = warning;
 	HAL_StatusTypeDef status;
 	status = erasePage();
 	if(status != HAL_OK)
 	{
-		printf("error in erase page in line %d in file %s\r\n", __LINE__, __FILE__);
+		printf("Error in erase page");
 	}
 	status = writeToPage( &_thresholds, (sizeof(THRESHOLDS)));
 	if(status != HAL_OK)
 	{
-		printf("error in write to page in line %d in file %s\r\n", __LINE__, __FILE__);
+		printf("Error in write to page");
 	}
 	else
 	{
-		printf("saved in flash in line %d in file %s \r\n", __LINE__, __FILE__);
+		printf("Warning event saved in flash");
 	}
 }
 
-void Flash :: setCritical(int critical)
+void FLASHCORE :: setCriticalThreshold(int critical)
 {
-	_thresholds._criticalUsed = DATA_IN_USED;
+	_thresholds._criticalDataWating = DATA_WAITING;
 	_thresholds._critical = critical;
 	HAL_StatusTypeDef status;
 	status = erasePage();
 	if(status != HAL_OK)
 	{
-		printf("error in erase page in line %d in file %s\r\n", __LINE__, __FILE__);
+		printf("Error in erase page");
 	}
 	status = writeToPage( &_thresholds, (sizeof(THRESHOLDS)));
 	if(status != HAL_OK)
 	{
-		printf("error in write to page in line %d in file %s\r\n", __LINE__, __FILE__);
+		printf("Error in write to page");
 	}
 	else
 	{
-		printf("saved in flash in line %d in file %s \r\n", __LINE__, __FILE__);
+		printf("Critical event saved in flash");
 	}
 }
 
-void Flash :: printThresHolds()
-{
-	THRESHOLDS* data = (THRESHOLDS *)(_pageAddr);
-	memcpy(&_thresholds, data, sizeof(THRESHOLDS));
-	_thresholds._criticalUsed == DATA_IN_USED? printf("critical = %d \r\n", _thresholds._critical):
-											  printf("Please insert critical temp\r\n");
-
-	_thresholds._warningUsed == DATA_IN_USED? printf("warning = %d \r\n", _thresholds._warning):
-			  	  	  	  	  	  	  	  	 printf("Please insert warning temp\r\n");
-}

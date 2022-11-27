@@ -3,7 +3,6 @@
 
  */
 
-#include <DhtManager.h>
 #include <iostream>
 #include "main.h"
 #include "Btn.h"
@@ -15,6 +14,7 @@
 #include "Cli.h"
 #include "Flash.h"
 #include <stdio.h>
+#include <SystemManager.h>
 #include "commTask.h"
 
 
@@ -28,7 +28,7 @@ CliContainer container = CliContainer();
 LED ledblue = LED(ledB_GPIO_Port, ledB_Pin);
 LED ledred = LED(ledR_GPIO_Port, ledR_Pin);
 BUZZER buzzer = BUZZER(&htim3);
-Flash* thresholdsFlash = new Flash (BANK_IN_USED, THRESHOLDS_PAGE_256, 1, FLASH_TYPEPROGRAM_DOUBLEWORD);
+FLASHCORE thresholdsFlash = FLASHCORE (DATA_WAITING, THRESHOLDS_PAGE_256, 1, FLASH_TYPEPROGRAM_DOUBLEWORD);
 _RTC rtc = _RTC(&hi2c1,0xD0);
 
 
@@ -46,7 +46,6 @@ void managerInit()
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-		//printf("right btn clicked\r\n");
 		if(button->getState() == BUTTON_PULLUP)
 		{
 			buzzer.buzzerStartPlay();
@@ -65,7 +64,7 @@ extern "C" void StartDht(void *argument)
 		if(dht->Dht_read() != HAL_OK)
 		{
 			dht->setState(TEMP_ERROR);
-			printf("error to read temperature\r\n");
+			printf("Error to read temperature\r\n");
 
 		}
 		else{
@@ -129,6 +128,11 @@ extern "C" void StartLedTask(void *argument)
 extern "C" void StartFlashTask(void *argument)
 {
 	for(;;){
+		if (dht->getState() == TEMP_WARNING){
+			//thresholdsFlash.writeToPage(dht->getTemp(), dataSize)
+			printf("TEMP_WARNING");
+
+		}
 
 	}
 	osThreadTerminate(osThreadGetId());

@@ -7,18 +7,21 @@
 #define INC_FLASH_H_
 #include "main.h"
 
-#define DATA_IN_USED 1
+#define DATA_WAITING 1
 #define DEFAULT_TEMP 50
+#define THRESHOLDS_PAGE_256 0x08080000
+#define FLASH_BANK 2
+
 
 struct THRESHOLDS
 {
-	uint16_t _warningUsed;
 	uint16_t _warning;
-	uint16_t _criticalUsed;
 	uint16_t _critical;
+	uint16_t _criticalDataWating;
+	uint16_t _warningDataWating;
 };
 
-class Flash
+class FLASHCORE
 {
 private:
 	uint32_t _bank;
@@ -27,7 +30,7 @@ private:
 	uint32_t _typeProgram;
 	THRESHOLDS _thresholds;
 public:
-	Flash(uint32_t bank, uint32_t pageAddr, uint32_t nbPage, uint32_t typeProgram)
+	FLASHCORE(uint32_t bank, uint32_t pageAddr, uint32_t nbPage, uint32_t typeProgram)
 	{
 		_bank = bank;
 		_pageAddr = pageAddr;
@@ -41,11 +44,10 @@ public:
 	uint32_t getPageAddr(){return _pageAddr;}
 	uint32_t getNbPages(){return _nbPages;}
 	uint32_t getTypeProgram(){return _typeProgram;}
-	int getWarning();
-	int getCritical();
-	void printThresHolds();
-	void setWarning(int warning);
-	void setCritical(int critical);
+	int getWarningThreshold();
+	int getCriticalThreshold();
+	void setWarningThreshold(int warning);
+	void setCriticalThreshold(int critical);
 };
 
 

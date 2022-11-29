@@ -6,7 +6,7 @@
  */
 
 #include "commTask.h"
-#include "DhtManager.h"
+#include "SystemManager.h"
 #include "main.h"
 #include "Cli.h"
 #include <stdint.h>

@@ -1,4 +1,4 @@
-/*
+	/*
  * Dht.h
 
  */
@@ -14,7 +14,8 @@ enum _alartState{
 	TEMP_ERROR,
 	TEMP_NORMAL,
 	TEMP_WARNING,
-	TEMP_CRITICAL
+	TEMP_CRITICAL,
+	TEMP_NO_BUZZER
 };
 class Dht
 {

@@ -1,7 +1,7 @@
-../Core/Src/Flash.cpp:12:19:HAL_StatusTypeDef Flash::erasePage()	40	static
-../Core/Src/Flash.cpp:36:19:HAL_StatusTypeDef Flash::writeToPage(void*, int)	40	static
-../Core/Src/Flash.cpp:56:5:int Flash::getWarning()	16	static
-../Core/Src/Flash.cpp:61:5:int Flash::getCritical()	16	static
-../Core/Src/Flash.cpp:66:6:void Flash::setWarning(int)	24	static
-../Core/Src/Flash.cpp:87:6:void Flash::setCritical(int)	24	static
-../Core/Src/Flash.cpp:108:6:void Flash::printThresHolds()	24	static
+../Core/Src/Flash.cpp:12:19:HAL_StatusTypeDef FLASHCORE::erasePage()	40	static
+../Core/Src/Flash.cpp:36:19:HAL_StatusTypeDef FLASHCORE::writeToPage(void*, int)	40	static
+../Core/Src/Flash.cpp:56:5:int FLASHCORE::getWarningThreshold()	16	static
+../Core/Src/Flash.cpp:61:5:int FLASHCORE::getCriticalThreshold()	16	static
+../Core/Src/Flash.cpp:66:6:void FLASHCORE::setWarningThreshold(int)	24	static
+../Core/Src/Flash.cpp:87:6:void FLASHCORE::setCriticalThreshold(int)	24	static
+../Core/Src/Flash.cpp:108:6:void FLASHCORE::printThresHoldsTemperature()	24	static

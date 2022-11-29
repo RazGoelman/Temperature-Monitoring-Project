@@ -48,6 +48,7 @@ public:
 	int getCriticalThreshold();
 	void setWarningThreshold(int warning);
 	void setCriticalThreshold(int critical);
+	void printThresHoldsTemperature();
 };
 
 

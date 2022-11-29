@@ -28,6 +28,6 @@ void LED::LED_delay(int num){
 void LED::Led_Blink()
 {
 	HAL_GPIO_TogglePin(GPIOx,GPIO_Pin);
-	delay;
+	//delay;
 
 }

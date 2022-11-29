@@ -1,6 +1,5 @@
 Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
- ../Core/Inc/DhtManager.h ../Core/Inc/main.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
+ ../Core/Inc/main.h ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h \
@@ -26,11 +25,13 @@ Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
+ ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h \
+ ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/Inc/main.h ../Core/Inc/Btn.h ../Core/Inc/Dht.h \
+ ../Core/Inc/Btn.h ../Core/Inc/main.h ../Core/Inc/Dht.h \
  ../Core/Inc/Buzzer.h ../Core/Inc/Rtc.h ../Core/Inc/Led.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
@@ -43,9 +44,9 @@ Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- ../Core/Inc/Cli.h ../Core/Inc/Flash.h ../Core/Inc/Flash.h \
- ../Core/Inc/commTask.h
-../Core/Inc/DhtManager.h:
+ ../Core/Inc/Cli.h ../Core/Inc/Flash.h ../Core/Inc/Buzzer.h \
+ ../Core/Inc/Led.h ../Core/Inc/Rtc.h ../Core/Inc/Dht.h \
+ ../Core/Inc/Flash.h ../Core/Inc/SystemManager.h ../Core/Inc/commTask.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -73,12 +74,14 @@ Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-../Core/Inc/main.h:
 ../Core/Inc/Btn.h:
+../Core/Inc/main.h:
 ../Core/Inc/Dht.h:
 ../Core/Inc/Buzzer.h:
 ../Core/Inc/Rtc.h:
@@ -96,5 +99,10 @@ Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 ../Core/Inc/Cli.h:
 ../Core/Inc/Flash.h:
+../Core/Inc/Buzzer.h:
+../Core/Inc/Led.h:
+../Core/Inc/Rtc.h:
+../Core/Inc/Dht.h:
 ../Core/Inc/Flash.h:
+../Core/Inc/SystemManager.h:
 ../Core/Inc/commTask.h:

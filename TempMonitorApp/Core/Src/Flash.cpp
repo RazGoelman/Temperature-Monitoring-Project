@@ -40,7 +40,7 @@ HAL_StatusTypeDef FLASHCORE :: writeToPage(void* data, int dataSize)
 	int index = 0;
 	while (index < dataSize)
 	{
-		uint64_t Data =*(uint64_t*)(data + index);
+		uint64_t Data =*(uint64_t*)((uint8_t*)data + index);
 		status = HAL_FLASH_Program(_typeProgram, _pageAddr + index, Data);
 		if(status != HAL_OK)
 		{
@@ -104,4 +104,25 @@ void FLASHCORE :: setCriticalThreshold(int critical)
 		printf("Critical event saved in flash");
 	}
 }
+
+void FLASHCORE :: printThresHoldsTemperature()
+{
+        THRESHOLDS* data = (THRESHOLDS *)(_pageAddr);
+        memcpy(&_thresholds, data, sizeof(THRESHOLDS));
+        if (_thresholds._criticalDataWating == DATA_WAITING){
+        	printf("Please insert critical temperature\r\n");
+        }
+        else{
+        	printf("critical = %d \r\n", _thresholds._critical);
+        }
+        if(_thresholds._warningDataWating == DATA_WAITING){
+        	printf("Please insert warning temperature\r\n");
+        }
+        else{
+        	printf("warning = %d \r\n", _thresholds._warning);
+        }
+
+
+}
+
 

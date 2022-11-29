@@ -17,8 +17,8 @@ struct THRESHOLDS
 {
 	uint16_t _warning;
 	uint16_t _critical;
-	uint16_t _criticalDataWating;
-	uint16_t _warningDataWating;
+	uint16_t _criticalTempThreshold;
+	uint16_t _warningTempThreshold;
 };
 
 class FLASHCORE
@@ -49,6 +49,8 @@ public:
 	void setWarningThreshold(int warning);
 	void setCriticalThreshold(int critical);
 	void printThresHoldsTemperature();
+	void SDDATA();
+
 };
 
 

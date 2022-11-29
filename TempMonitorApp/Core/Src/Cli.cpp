@@ -20,34 +20,6 @@ extern Dht dht;
 extern FLASHCORE thresholdsFlash;
 
 
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-void SetWarning :: doCommand(char* param)
-{
-        if(param == nullptr)
-        {
-                printf("setFlashInfo's doCommand with param %s\r\n", param);
-        }
-        else
-        {
-                int value = atoi(param);
-                _flash->setWarningThreshold(value);
-        }
-}
-
-void SetCritical :: doCommand(char* param)
-{
-        if(param == nullptr)
-        {
-                printf("setFlashInfo's doCommand with param %s\r\n", param);
-        }
-        else
-        {
-                int value = atoi(param);
-                _flash->setCriticalThreshold(value);
-        }
-}
-
 
 
 
@@ -59,9 +31,13 @@ void CliContainer::initCLIcontainer(){
 	container.RegisterCommand("get-time",new rtcgettime(&rtc));
 
 	//set warning / critical temperature
-	//container.RegisterCommand("set-warning",SetWarning());
-	//container.RegisterCommand("set-critical", new SetCritical());
-	//container.RegisterCommand("print", new thresholdsFlash.printThresHoldsTemperature());
+	container.RegisterCommand("warning", new WarningTempThreshold());
+	container.RegisterCommand("critical", new CriticalTempThreshold());
+	//container.RegisterCommand("print", new GetTempThresholdInfo());
+
+	//get some statistics from the SD card
+	container.RegisterCommand("SD-data", new PrintSDData());
+
 	// switch on / off led
 	container.RegisterCommand("led-on",new ledOn(&ledblue));
 	container.RegisterCommand("led-off",new ledOff(&ledblue));
@@ -71,9 +47,10 @@ void CliContainer::initCLIcontainer(){
 	container.RegisterCommand("play",new buzzeron(&buzzer));
 	container.RegisterCommand("stop",new buzzeroff(&buzzer));
 
+	/*
 	container.RegisterCommand("rtc-start",new rtcstart(&rtc));
 	container.RegisterCommand("rtc-stop",new rtcstop(&rtc));
-
+	*/
 
 
 

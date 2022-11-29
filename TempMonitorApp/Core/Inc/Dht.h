@@ -45,6 +45,8 @@ public:
 	void setState(_alartState _state);
 	int Dht_read();
 	double getTemp();
+	void Dht_onGpioInterrupt(uint16_t pin);
+
 };
 
 

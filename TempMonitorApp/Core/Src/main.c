@@ -23,6 +23,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h> //for va_list var arg functions
 #include "commTask.h"
 /* USER CODE END Includes */
 
@@ -78,13 +81,6 @@ const osThreadAttr_t FlashTask_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for LedTask */
-osThreadId_t LedTaskHandle;
-const osThreadAttr_t LedTask_attributes = {
-  .name = "LedTask",
-  .stack_size = 256 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
-};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -98,10 +94,9 @@ static void MX_I2C1_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_SPI1_Init(void);
 void StartDefaultTask(void *argument);
-void StartcommTask(void *argument);
-void StartDht(void *argument);
-void StartFlashTask(void *argument);
-void StartLedTask(void *argument);
+extern void StartcommTask(void *argument);
+extern void StartDht(void *argument);
+extern void StartFlashTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -114,7 +109,17 @@ int _write(int fd, char* ptr, int len) {
     HAL_UART_Transmit(&huart2, (uint8_t *) ptr, len, HAL_MAX_DELAY);
     return len;
 }
+/*void myprintf(const char *fmt, ...) {
+  static char buffer[256];
+  va_list args;
+  va_start(args, fmt);
+  vsnprintf(buffer, sizeof(buffer), fmt, args);
+  va_end(args);
 
+  int len = strlen(buffer);
+  HAL_UART_Transmit(&huart2, (uint8_t*)buffer, len, -1);
+
+}*/
 /* USER CODE END 0 */
 
 /**
@@ -187,9 +192,6 @@ int main(void)
 
   /* creation of FlashTask */
   FlashTaskHandle = osThreadNew(StartFlashTask, NULL, &FlashTask_attributes);
-
-  /* creation of LedTask */
-  LedTaskHandle = osThreadNew(StartLedTask, NULL, &LedTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -547,7 +549,7 @@ static void MX_GPIO_Init(void)
   * @retval None
   */
 /* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument)
+__weak void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
@@ -556,78 +558,6 @@ void StartDefaultTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END 5 */
-}
-
-/* USER CODE BEGIN Header_StartcommTask */
-/**
-* @brief Function implementing the CommTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartcommTask */
-__weak void StartcommTask(void *argument)
-{
-  /* USER CODE BEGIN StartcommTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartcommTask */
-}
-
-/* USER CODE BEGIN Header_StartDht */
-/**
-* @brief Function implementing the DhtTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartDht */
-__weak void StartDht(void *argument)
-{
-  /* USER CODE BEGIN StartDht */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartDht */
-}
-
-/* USER CODE BEGIN Header_StartFlashTask */
-/**
-* @brief Function implementing the FlashTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartFlashTask */
-__weak void StartFlashTask(void *argument)
-{
-  /* USER CODE BEGIN StartFlashTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartFlashTask */
-}
-
-/* USER CODE BEGIN Header_StartLedTask */
-/**
-* @brief Function implementing the LedTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartLedTask */
-__weak void StartLedTask(void *argument)
-{
-  /* USER CODE BEGIN StartLedTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartLedTask */
 }
 
 /**

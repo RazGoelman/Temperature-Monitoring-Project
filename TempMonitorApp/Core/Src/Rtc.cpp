@@ -80,7 +80,7 @@ void _RTC::rtcGetTime()
 	uint8_t buffer[RTC_DATE_TIME_SIZE];
 	DateTime * mytime = new DateTime;
 	if(HAL_I2C_Mem_Read(_hi2c, _devAddr, 0, 1, buffer, RTC_DATE_TIME_SIZE, 0xFF) == HAL_OK){
-		printf("Read success\r\n");
+		//printf("Read success\r\n");
 	}
 	else{
 		printf("Read failed\r\n");

@@ -21,6 +21,9 @@
 #include "Dht.h"
 
 extern Dht dht;
+extern double warningThreshold;
+extern double criticalThreshold;
+extern FLASHCORE thresholdsFlash;
 class Cli{
 public:
 	virtual void doCommand(const char * param) = 0;
@@ -221,38 +224,63 @@ public:
 ///////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 //TRESHOLD FLASH
-class SetWarning : public Cli
-{
+class WarningTempThreshold: public Cli {
 private:
-	FLASHCORE* _flash;
+	double _warningTempThreshold;
 public:
-	SetWarning(FLASHCORE* flash){
-		_flash = flash;
-
+	WarningTempThreshold(){
+		_warningTempThreshold = 50;
 	}
-	void doCommand(char* param);
 
+	void doCommand(const char* param){
+		_warningTempThreshold = atof(param);
+		warningThreshold = _warningTempThreshold;
+		thresholdsFlash.setWarningThreshold(warningThreshold);
+		//thresholdsFlash.flash_write(THRESHOLDS_PAGE_256, warningThreshold, double __warningTempThreshold));
+	}
 };
 
-class SetCritical : public Cli
+class CriticalTempThreshold: public Cli {
+private:
+	double _criticalTempThreshold;
+public:
+	CriticalTempThreshold(){
+		_criticalTempThreshold = 50;
+	}
+
+	void doCommand(const char* param){
+		_criticalTempThreshold = atof(param);
+		criticalThreshold = _criticalTempThreshold;
+		thresholdsFlash.setCriticalThreshold(criticalThreshold);
+	}
+};
+
+class GetTempThresholdInfo : public Cli
 {
 private:
 	FLASHCORE* _flash;
 public:
-	void doCommand(char* param);
-};
-class GetFlashInfo : public Cli
-{
-private:
-	FLASHCORE* _flash;
-public:
-	void doCommand(char* param){
+	GetTempThresholdInfo()
+	{
+		_flash;
+	}
+	void doCommand(const char* param){
 		_flash->printThresHoldsTemperature();
 		printf("יTemprature = %.2f \r\n", dht.getTemp());
 	}
 
 };
-
+ class PrintSDData : public Cli {
+private:
+	FLASHCORE* _flash;
+public:
+	PrintSDData(){
+		_flash;
+	}
+	void doCommand(const char* param){
+		_flash->SDDATA();
+	}
+};
 
 
 

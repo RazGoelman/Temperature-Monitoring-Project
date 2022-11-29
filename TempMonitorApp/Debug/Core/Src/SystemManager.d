@@ -46,7 +46,12 @@ Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  ../Core/Inc/Cli.h ../Core/Inc/Flash.h ../Core/Inc/Buzzer.h \
  ../Core/Inc/Led.h ../Core/Inc/Rtc.h ../Core/Inc/Dht.h \
- ../Core/Inc/Flash.h ../Core/Inc/SystemManager.h ../Core/Inc/commTask.h
+ ../Core/Inc/Flash.h ../Core/Inc/SystemManager.h ../Core/Inc/commTask.h \
+ ../FATFS/App/fatfs.h ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
+ ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
+ ../Middlewares/Third_Party/FatFs/src/diskio.h \
+ ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -106,3 +111,11 @@ Core/Src/SystemManager.o: ../Core/Src/SystemManager.cpp \
 ../Core/Inc/Flash.h:
 ../Core/Inc/SystemManager.h:
 ../Core/Inc/commTask.h:
+../FATFS/App/fatfs.h:
+../Middlewares/Third_Party/FatFs/src/ff.h:
+../Middlewares/Third_Party/FatFs/src/integer.h:
+../FATFS/Target/ffconf.h:
+../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
+../Middlewares/Third_Party/FatFs/src/diskio.h:
+../Middlewares/Third_Party/FatFs/src/ff.h:
+../FATFS/Target/user_diskio.h:

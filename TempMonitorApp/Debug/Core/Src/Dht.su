@@ -5,3 +5,4 @@
 ../Core/Src/Dht.cpp:130:8:double Dht::getTemp()	16	static
 ../Core/Src/Dht.cpp:134:13:_alartState Dht::getState()	16	static
 ../Core/Src/Dht.cpp:138:6:void Dht::setState(_alartState)	16	static
+../Core/Src/Dht.cpp:143:6:void Dht::Dht_onGpioInterrupt(uint16_t)	16	static

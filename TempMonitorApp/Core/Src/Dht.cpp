@@ -140,3 +140,6 @@ void Dht :: setState(_alartState _state)
 	_dhtstate = _state;
 }
 
+void Dht::Dht_onGpioInterrupt(uint16_t pin)
+{
+}

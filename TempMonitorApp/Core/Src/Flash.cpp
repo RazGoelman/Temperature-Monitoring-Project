@@ -7,7 +7,14 @@
 #include "Flash.h"
 #include <stdio.h>
 #include <string.h>
+#include "fatfs.h"
 
+
+//some variables for FatFs
+extern FATFS FatFs; 	//Fatfs handle
+//FIL fil; 		//File handle
+extern FRESULT fres; //Result after operations
+//BYTE readBuf[30];
 
 HAL_StatusTypeDef FLASHCORE :: erasePage()
 {
@@ -52,20 +59,20 @@ HAL_StatusTypeDef FLASHCORE :: writeToPage(void* data, int dataSize)
 	printf("%d\r\n", status);
 	return status;
 }
-
+//get warning threshold
 int FLASHCORE :: getWarningThreshold()
 {
 	return _thresholds._warning;
 }
-
+//get critical threshold
 int FLASHCORE :: getCriticalThreshold()
 {
 	return _thresholds._critical;
 }
-
+// setting and save warning level
 void FLASHCORE :: setWarningThreshold(int warning)
 {
-	_thresholds._warningDataWating = DATA_WAITING;
+	_thresholds._warningTempThreshold = DATA_WAITING;
 	_thresholds._warning = warning;
 	HAL_StatusTypeDef status;
 	status = erasePage();
@@ -83,10 +90,10 @@ void FLASHCORE :: setWarningThreshold(int warning)
 		printf("Warning event saved in flash");
 	}
 }
-
+// setting and save critical level
 void FLASHCORE :: setCriticalThreshold(int critical)
 {
-	_thresholds._criticalDataWating = DATA_WAITING;
+	_thresholds._criticalTempThreshold = DATA_WAITING;
 	_thresholds._critical = critical;
 	HAL_StatusTypeDef status;
 	status = erasePage();
@@ -104,24 +111,57 @@ void FLASHCORE :: setCriticalThreshold(int critical)
 		printf("Critical event saved in flash");
 	}
 }
-
+// print warning / critical data
 void FLASHCORE :: printThresHoldsTemperature()
 {
         THRESHOLDS* data = (THRESHOLDS *)(_pageAddr);
         memcpy(&_thresholds, data, sizeof(THRESHOLDS));
-        if (_thresholds._criticalDataWating == DATA_WAITING){
+        if (_thresholds._criticalTempThreshold == DATA_WAITING){
         	printf("Please insert critical temperature\r\n");
         }
         else{
         	printf("critical = %d \r\n", _thresholds._critical);
         }
-        if(_thresholds._warningDataWating == DATA_WAITING){
+        if(_thresholds._warningTempThreshold == DATA_WAITING){
         	printf("Please insert warning temperature\r\n");
         }
         else{
         	printf("warning = %d \r\n", _thresholds._warning);
         }
 
+
+}
+//get some statistics from the SD card
+void FLASHCORE :: SDDATA(){
+	printf("\r\n~  SD card  ~\r\n\r\n");
+
+	HAL_Delay(1000); //a short delay is important to let the SD card settle
+
+
+
+	//Open the file system
+	fres = f_mount(&FatFs, "", 1); //1=mount now
+	if (fres != FR_OK) {
+	printf("f_mount error (%i)\r\n", fres);
+	while(1);
+	}
+
+	//Let's get some statistics from the SD card
+	DWORD free_clusters, free_sectors, total_sectors;
+
+	FATFS* getFreeFs;
+
+	fres = f_getfree("", &free_clusters, &getFreeFs);
+	if (fres != FR_OK) {
+	printf("f_getfree error (%i)\r\n", fres);
+	while(1);
+	}
+
+	//Formula comes from ChaN's documentation
+	total_sectors = (getFreeFs->n_fatent - 2) * getFreeFs->csize;
+	free_sectors = free_clusters * getFreeFs->csize;
+
+	printf("SD card stats:\r\n%10lu KiB total drive space.\r\n%10lu KiB available.\r\n", total_sectors / 2, free_sectors / 2);
 
 }
 

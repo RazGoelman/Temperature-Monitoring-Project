@@ -19,11 +19,16 @@
 #include "Led.h"
 #include "Rtc.h"
 #include "Dht.h"
+#include "user_diskio.h"
+
+#include "integer.h"
 
 extern Dht dht;
 extern double warningThreshold;
 extern double criticalThreshold;
 extern FLASHCORE thresholdsFlash;
+
+
 class Cli{
 public:
 	virtual void doCommand(const char * param) = 0;
@@ -262,7 +267,7 @@ private:
 public:
 	GetTempThresholdInfo()
 	{
-		_flash;
+		//_flash;
 	}
 	void doCommand(const char* param){
 		_flash->printThresHoldsTemperature();
@@ -275,14 +280,41 @@ private:
 	FLASHCORE* _flash;
 public:
 	PrintSDData(){
-		_flash;
+		//_flash;
 	}
 	void doCommand(const char* param){
 		_flash->SDDATA();
 	}
 };
 
+class RemoveFileSDCard : public Cli {
+private:
+	 FLASHCORE* _flash;
+public:
+	 RemoveFileSDCard(){
 
+	 }
+	 void doCommand(const char* param){
+
+	 }
+
+
+private:
+};
+
+class timeRTC : public Cli
+{
+private:
+	 FLASHCORE* _flash;
+public:
+	 timeRTC(){
+
+	 }
+	 void doCommand(const char* param){
+	 		_flash->TIMERTC();
+	 	}
+
+};
 
 
 #endif /* INC_CLI_H_ */

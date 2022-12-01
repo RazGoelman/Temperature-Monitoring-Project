@@ -9,6 +9,11 @@
 #include <stdio.h>
 #include "Buzzer.h"
 #include "Led.h"
+#include "diskio.h"
+#include <string.h>
+#include "ff_gen_drv.h"
+#include "ff.h"
+
 
 
 extern LED ledblue;
@@ -18,7 +23,6 @@ extern BUZZER buzzer;
 extern _RTC rtc;
 extern Dht dht;
 extern FLASHCORE thresholdsFlash;
-
 
 
 
@@ -46,7 +50,8 @@ void CliContainer::initCLIcontainer(){
 	//play / stop analog buzzer
 	container.RegisterCommand("play",new buzzeron(&buzzer));
 	container.RegisterCommand("stop",new buzzeroff(&buzzer));
-
+	// time as get_fattime function
+	container.RegisterCommand("time", new timeRTC());
 	/*
 	container.RegisterCommand("rtc-start",new rtcstart(&rtc));
 	container.RegisterCommand("rtc-stop",new rtcstop(&rtc));

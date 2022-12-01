@@ -2,13 +2,14 @@
 ../Core/Inc/Btn.h:25:2:Btn::Btn(GPIO_TypeDef*, uint16_t)	24	static
 ../Core/Inc/Dht.h:32:2:Dht::Dht(GPIO_TypeDef*, uint16_t, TIM_HandleTypeDef*)	24	static
 ../Core/Inc/Flash.h:33:2:FLASHCORE::FLASHCORE(uint32_t, uint32_t, uint32_t, uint32_t)	24	static
-../Core/Inc/Cli.h:44:2:CliContainer::CliContainer()	16	static
-../Core/Inc/Cli.h:45:2:CliContainer::~CliContainer()	16	static
-../Core/Src/SystemManager.cpp:130:6:void managerInit()	8	static
-../Core/Src/SystemManager.cpp:142:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
-../Core/Src/SystemManager.cpp:154:17:void StartcommTask(void*)	16	static
-../Core/Src/SystemManager.cpp:166:17:void StartDht(void*)	24	static
-../Core/Src/SystemManager.cpp:219:17:void StartFlashTask(void*)	24	static
-../Core/Src/SystemManager.cpp:272:1:void __static_initialization_and_destruction_0(int, int)	24	static
-../Core/Src/SystemManager.cpp:272:1:cpp)	8	static
-../Core/Src/SystemManager.cpp:272:1:cpp)	8	static
+../Core/Inc/Cli.h:49:2:CliContainer::CliContainer()	16	static
+../Core/Inc/Cli.h:50:2:CliContainer::~CliContainer()	16	static
+../Core/Src/SystemManager.cpp:47:6:void SD_init()	8	static
+../Core/Src/SystemManager.cpp:65:6:void managerInit()	8	static
+../Core/Src/SystemManager.cpp:77:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
+../Core/Src/SystemManager.cpp:89:17:void StartcommTask(void*)	16	static
+../Core/Src/SystemManager.cpp:101:17:void StartDht(void*)	24	static
+../Core/Src/SystemManager.cpp:154:17:void StartFlashTask(void*)	24	static
+../Core/Src/SystemManager.cpp:206:1:void __static_initialization_and_destruction_0(int, int)	24	static
+../Core/Src/SystemManager.cpp:206:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:206:1:cpp)	8	static

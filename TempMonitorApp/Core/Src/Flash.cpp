@@ -8,13 +8,26 @@
 #include <stdio.h>
 #include <string.h>
 #include "fatfs.h"
+#include "time.h"
+#include "main.h"
+#include "ff.h"
 
 
 //some variables for FatFs
 extern FATFS FatFs; 	//Fatfs handle
-//FIL fil; 		//File handle
+extern FIL fil; 		//File handle
 extern FRESULT fres; //Result after operations
 //BYTE readBuf[30];
+char buf[100];
+
+extern TCHAR* path;
+extern UART_HandleTypeDef huart2;
+
+
+void Send_Uart (char *string)
+{
+	HAL_UART_Transmit(&huart2, (uint8_t *)string, strlen (string), HAL_MAX_DELAY);
+}
 
 HAL_StatusTypeDef FLASHCORE :: erasePage()
 {
@@ -137,8 +150,6 @@ void FLASHCORE :: SDDATA(){
 
 	HAL_Delay(1000); //a short delay is important to let the SD card settle
 
-
-
 	//Open the file system
 	fres = f_mount(&FatFs, "", 1); //1=mount now
 	if (fres != FR_OK) {
@@ -165,4 +176,57 @@ void FLASHCORE :: SDDATA(){
 
 }
 
+DWORD FLASHCORE::TIMERTC(){
 
+	time_t t;
+	    struct tm *stm;
+
+
+	    t = time(0);
+	    stm = localtime(&t);
+	    return (DWORD)(stm->tm_year - 80) << 25 |
+	           (DWORD)(stm->tm_mon + 1) << 21 |
+	           (DWORD)stm->tm_mday << 16 |
+	           (DWORD)stm->tm_hour << 11 |
+	           (DWORD)stm->tm_min << 5 |
+	           (DWORD)stm->tm_sec >> 1;
+
+}
+
+void FLASHCORE::RemoveFile()
+{
+	do{
+	//Open the file system
+		fres = f_mount(&FatFs, "", 1); //1=mount now
+		if (fres != FR_OK) {
+			printf("No SD Card found (%i)\r\n", fres);
+			break;
+		}
+		printf("SD Card Mounted Successfully!!!\r\n");
+
+		//Open the file
+		fres = f_open(&fil, "logger.txt", FA_READ);
+		if(fres != FR_OK)
+		{
+		  printf("File opening Error : (%i)\r\n", fres);
+		  break;
+		}
+		//read the data
+		f_gets(buf, sizeof(buf), &fil);
+		printf("Read Data : %s\r\n", buf);
+		//close your file
+		f_close(&fil);
+		printf("Closing File!!!\r\n");
+#if 0
+		fres = f_unlink("logger.txt");
+		if (fres != FR_OK){
+			printf("Cannot able to delete the file\n");
+		}
+		printf (buf, "*%s* has been removed successfully\n", fres);
+#endif
+	}while(false);
+	//We're done, so de-mount the drive
+	  f_mount(NULL, "", 0);
+	  printf("SD Card Unmounted Successfully!!!\r\n");
+
+}

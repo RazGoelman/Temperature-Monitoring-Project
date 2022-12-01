@@ -27,6 +27,7 @@
 #include <string.h>
 #include <stdarg.h> //for va_list var arg functions
 #include "commTask.h"
+#include "SystemManager.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

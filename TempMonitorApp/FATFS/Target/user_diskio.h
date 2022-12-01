@@ -29,11 +29,12 @@
 /* USER CODE BEGIN 0 */
 
 /* Includes ------------------------------------------------------------------*/
+#include "user_diskio_spi.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-extern Diskio_drvTypeDef  USER_Driver;
-
+extern Diskio_drvTypeDef USER_Driver;
 /* USER CODE END 0 */
 
 #ifdef __cplusplus

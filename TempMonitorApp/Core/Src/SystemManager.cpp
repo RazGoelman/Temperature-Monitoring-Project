@@ -16,7 +16,7 @@
 #include "Flash.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <SystemManager.h>
+#include "SystemManager.h"
 #include "commTask.h"
 #include "fatfs.h"
 
@@ -24,8 +24,10 @@
 extern  TIM_HandleTypeDef htim6;
 extern  TIM_HandleTypeDef htim3;
 extern  I2C_HandleTypeDef hi2c1;
+
 double warningThreshold = 27.00;
 double criticalThreshold = 29.00;
+
 Btn button = Btn(SW1_GPIO_Port, SW1_Pin);
 Dht dht = Dht(DHT_GPIO_Port, DHT_Pin, &htim6);
 CliContainer container = CliContainer();
@@ -41,90 +43,23 @@ FIL fil; 		//File handle
 FRESULT fres; //Result after operations
 BYTE readBuf[30];
 
-/*
+
 void SD_init()
 {
-		printf("\r\n~  SD card  ~\r\n\r\n");
-
-	    HAL_Delay(1000); //a short delay is important to let the SD card settle
-
-
-
-	    //Open the file system
-	    fres = f_mount(&FatFs, "", 1); //1=mount now
-	    if (fres != FR_OK) {
-	  	printf("f_mount error (%i)\r\n", fres);
-	  	while(1);
-	    }
-
-	    //Let's get some statistics from the SD card
-	    DWORD free_clusters, free_sectors, total_sectors;
-
-	    FATFS* getFreeFs;
-
-	    fres = f_getfree("", &free_clusters, &getFreeFs);
-	    if (fres != FR_OK) {
-	  	printf("f_getfree error (%i)\r\n", fres);
-	  	while(1);
-	    }
-
-	    //Formula comes from ChaN's documentation
-	    total_sectors = (getFreeFs->n_fatent - 2) * getFreeFs->csize;
-	    free_sectors = free_clusters * getFreeFs->csize;
-
-	    printf("SD card stats:\r\n%10lu KiB total drive space.\r\n%10lu KiB available.\r\n", total_sectors / 2, free_sectors / 2);
-
-	    //Now let's try to open file "test.txt"
-	    fres = f_open(&fil, "TempLoger.txt", FA_READ );
-	    if (fres != FR_OK) {
-	  	printf("f_open error (%i)\r\n", fres);
-	  	while(1);
-	    }
-	    printf("I was able to open 'TempLoger.txt' for reading!\r\n");
-
-	    //Read 30 bytes from "test.txt" on the SD card
-	    BYTE readBuf[100];
-
-	    //We can either use f_read OR f_gets to get data out of files
-	    //f_gets is a wrapper on f_read that does some string formatting for us
-	    TCHAR* rres = f_gets((TCHAR*)readBuf, 30, &fil);
-	    if(rres != 0) {
-	  	printf("Read string from 'TempLoger.txt' contents: %s\r\n", readBuf);
-	    } else {
-	  	printf("f_gets error (%i)\r\n", fres);
-	    }
-
-	    f_close(&fil);
-	    //Now let's try and write a file "write.txt"
-		fres = f_open(&fil, "TempLoger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+		fres = f_mount(&FatFs, "", 1); //1=mount now
+		if (fres != FR_OK) {
+		printf("f_mount error (%i)\r\n", fres);
+		while(1);
+		}
+		//Now let's try and write a file "write.txt"
+		fres = f_open(&fil, "logger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 		if(fres == FR_OK) {
-		printf("I was able to open 'TempLoger.txt' for writing\r\n");
+		printf("I was able to open 'logger.txt' for writing\r\n");
 		} else {
 		printf("f_open error (%i)\r\n", fres);
 		}
-
-		//Copy in a string
-		utoa(dht.getTemp(),(char*)readBuf,30);
-		UINT bytesWrote;
-		fres = f_write(&fil, readBuf, 19, &bytesWrote);
-		if(fres == FR_OK) {
-		printf("Wrote %i bytes to 'TempLoger.txt'!\r\n", bytesWrote);
-		} else {
-		printf("f_write error (%i)\r\n", fres);
-		}
-
-		f_close(&fil);
-
-		//We're done, so de-mount the drive
-		f_mount(NULL, "", 0);
 }
-void writeTemp(){
 
-
-
-
-}
-*/
 
 
 void managerInit()
@@ -132,7 +67,7 @@ void managerInit()
 	HAL_TIM_Base_Init(&htim6);
 	HAL_TIM_Base_Start_IT(&htim3);
 	container.initCLIcontainer();
-	//SD_init();
+	SD_init();
 	thresholdsFlash.printThresHoldsTemperature();
 	HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
 
@@ -263,90 +198,11 @@ extern "C" void StartFlashTask(void *argument)
 			//We're done, so de-mount the drive
 			f_mount(NULL, "", 0);
 
-
 		}
 
 	}
 	osThreadTerminate(osThreadGetId());
 
 }
-/*
-void SD_init()
-{
-		printf("\r\n~  SD card  ~\r\n\r\n");
 
-	    HAL_Delay(1000); //a short delay is important to let the SD card settle
-
-
-
-	    //Open the file system
-	    fres = f_mount(&FatFs, "", 1); //1=mount now
-	    if (fres != FR_OK) {
-	  	printf("f_mount error (%i)\r\n", fres);
-	  	while(1);
-	    }
-
-	    //Let's get some statistics from the SD card
-	    DWORD free_clusters, free_sectors, total_sectors;
-
-	    FATFS* getFreeFs;
-
-	    fres = f_getfree("", &free_clusters, &getFreeFs);
-	    if (fres != FR_OK) {
-	  	printf("f_getfree error (%i)\r\n", fres);
-	  	while(1);
-	    }
-
-	    //Formula comes from ChaN's documentation
-	    total_sectors = (getFreeFs->n_fatent - 2) * getFreeFs->csize;
-	    free_sectors = free_clusters * getFreeFs->csize;
-
-	    printf("SD card stats:\r\n%10lu KiB total drive space.\r\n%10lu KiB available.\r\n", total_sectors / 2, free_sectors / 2);
-
-	    //Now let's try to open file "test.txt"
-	    fres = f_open(&fil, "TempLoger.txt", FA_READ );
-	    if (fres != FR_OK) {
-	  	printf("f_open error (%i)\r\n", fres);
-	  	while(1);
-	    }
-	    printf("I was able to open 'TempLoger.txt' for reading!\r\n");
-
-	    //Read 30 bytes from "test.txt" on the SD card
-	    BYTE readBuf[100];
-
-	    //We can either use f_read OR f_gets to get data out of files
-	    //f_gets is a wrapper on f_read that does some string formatting for us
-	    TCHAR* rres = f_gets((TCHAR*)readBuf, 30, &fil);
-	    if(rres != 0) {
-	  	printf("Read string from 'TempLoger.txt' contents: %s\r\n", readBuf);
-	    } else {
-	  	printf("f_gets error (%i)\r\n", fres);
-	    }
-
-	    f_close(&fil);
-
-	    //Now let's try and write a file "write.txt"
-		fres = f_open(&fil, "TempLoger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
-		if(fres == FR_OK) {
-		printf("I was able to open 'TempLoger.txt' for writing\r\n");
-		} else {
-		printf("f_open error (%i)\r\n", fres);
-		}
-
-		//Copy in a string
-		utoa(dht.getTemp(),(char*)readBuf,30);
-		UINT bytesWrote;
-		fres = f_write(&fil, readBuf, 19, &bytesWrote);
-		if(fres == FR_OK) {
-		printf("Wrote %i bytes to 'TempLoger.txt'!\r\n", bytesWrote);
-		} else {
-		printf("f_write error (%i)\r\n", fres);
-		}
-
-		f_close(&fil);
-
-		//We're done, so de-mount the drive
-		f_mount(NULL, "", 0);
-}
-*/
 

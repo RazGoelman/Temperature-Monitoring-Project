@@ -36,6 +36,7 @@
 #include <string.h>
 #include "ff_gen_drv.h"
 #include "user_diskio_spi.h"
+#include "time.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -176,3 +177,8 @@ DRESULT USER_ioctl (
 }
 #endif /* _USE_IOCTL == 1 */
 
+//DWORD get_fattime (void)
+//{
+//	return 0;
+//
+//}

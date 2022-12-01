@@ -6,12 +6,12 @@
 #ifndef INC_FLASH_H_
 #define INC_FLASH_H_
 #include "main.h"
-
+#include "integer.h"
+#include "ff.h"
 #define DATA_WAITING 1
 #define DEFAULT_TEMP 50
 #define THRESHOLDS_PAGE_256 0x08080000
 #define FLASH_BANK 2
-
 
 struct THRESHOLDS
 {
@@ -50,6 +50,8 @@ public:
 	void setCriticalThreshold(int critical);
 	void printThresHoldsTemperature();
 	void SDDATA();
+	DWORD TIMERTC();
+	void RemoveFile();
 
 };
 

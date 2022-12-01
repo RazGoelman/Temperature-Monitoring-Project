@@ -139,7 +139,58 @@
    
      The temperature task will chack evry 1 ms the sensor output and will active according to the returen temperature
 
-   ![image](https://user-images.githubusercontent.com/66781442/203984336-d14be378-8a2d-4d25-9ec4-ae72628b2d2a.png)
+   
+         // this task measure ever one second the temp.
+      extern "C" void StartDht(void *argument)
+      {
+         while(1)
+         {
+            // The temperature reading failed
+            if(dht.Dht_read() != HAL_OK)
+            {
+               dht.setState(TEMP_ERROR);
+               printf("Error to read temperature\r\n");
+
+            }
+            else{
+               /*change temperature sensor state
+                 change  led state
+                 change button
+                 threshold  write into the log file*/
+
+               //thresholdsFlash.getCriticalThreshold()
+               if (dht.getTemp() >= criticalThreshold) {
+                     dht.setState(TEMP_CRITICAL);
+                     ledblue.Led_Off();
+                     button.setState(BUTTON_PULLUP);
+                     ledred.Led_Blink();
+                     buzzer.buzzerStartPlay();
+                     //utoa(dht.getTemp(),(char*)readBuf,20);
+                     //printf("temp is %.2f \r\n", dht.getTemp());
+               }
+               else if(dht.getTemp() >= warningThreshold){
+                     dht.setState(TEMP_WARNING);
+                     button.setState(BUTTON_PULLDOWN);
+                     ledblue.Led_Off();
+                     ledred.Led_On();
+                     buzzer.buzzerStopPlay();
+
+
+               }
+               else {
+                     dht.setState(TEMP_NORMAL);
+                     button.setState(BUTTON_PULLDOWN);
+                     buzzer.buzzerStopPlay();
+                     ledblue.Led_On();
+                     ledred.Led_Off();
+               }
+            }
+            osDelay(ONE_SECOND);
+
+         }
+         //Required to exit the task function osThreadTerminate must be used
+         osThreadTerminate(osThreadGetId());
+      }
 
 **Communication Task:**
 

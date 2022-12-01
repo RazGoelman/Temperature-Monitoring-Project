@@ -22,11 +22,15 @@
 ../Core/Inc/Cli.h:256:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
 ../Core/Inc/Cli.h:282:2:PrintSDData::PrintSDData()	16	static
 ../Core/Inc/Cli.h:285:7:virtual void PrintSDData::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:294:3:RemoveFileSDCard::RemoveFileSDCard()	16	static
+../Core/Inc/Cli.h:297:8:virtual void RemoveFileSDCard::doCommand(const char*)	16	static
 ../Core/Inc/Cli.h:310:3:timeRTC::timeRTC()	16	static
 ../Core/Inc/Cli.h:313:8:virtual void timeRTC::doCommand(const char*)	16	static
 ../Core/Src/Cli.cpp:31:6:void CliContainer::initCLIcontainer()	24	static
 ../Core/Inc/Cli.h:305:7:timeRTC::~timeRTC()	16	static
 ../Core/Inc/Cli.h:305:7:virtual timeRTC::~timeRTC()	16	static
+../Core/Inc/Cli.h:290:7:RemoveFileSDCard::~RemoveFileSDCard()	16	static
+../Core/Inc/Cli.h:290:7:virtual RemoveFileSDCard::~RemoveFileSDCard()	16	static
 ../Core/Inc/Cli.h:278:8:PrintSDData::~PrintSDData()	16	static
 ../Core/Inc/Cli.h:278:8:virtual PrintSDData::~PrintSDData()	16	static
 ../Core/Inc/Cli.h:248:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static

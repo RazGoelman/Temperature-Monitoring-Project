@@ -41,6 +41,8 @@ void CliContainer::initCLIcontainer(){
 
 	//get some statistics from the SD card
 	container.RegisterCommand("SD-data", new PrintSDData());
+	//Remove file from SD card
+	container.RegisterCommand("clear", new RemoveFileSDCard());
 
 	// switch on / off led
 	container.RegisterCommand("led-on",new ledOn(&ledblue));
@@ -52,6 +54,7 @@ void CliContainer::initCLIcontainer(){
 	container.RegisterCommand("stop",new buzzeroff(&buzzer));
 	// time as get_fattime function
 	container.RegisterCommand("time", new timeRTC());
+
 	/*
 	container.RegisterCommand("rtc-start",new rtcstart(&rtc));
 	container.RegisterCommand("rtc-stop",new rtcstop(&rtc));

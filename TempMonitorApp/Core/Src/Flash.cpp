@@ -11,31 +11,23 @@
 #include "time.h"
 #include "main.h"
 #include "ff.h"
+#include "Cli.h"
 
 
 //some variables for FatFs
 extern FATFS FatFs; 	//Fatfs handle
 extern FIL fil; 		//File handle
 extern FRESULT fres; //Result after operations
-//BYTE readBuf[30];
 char buf[100];
-
 extern TCHAR* path;
-extern UART_HandleTypeDef huart2;
-
-
-void Send_Uart (char *string)
-{
-	HAL_UART_Transmit(&huart2, (uint8_t *)string, strlen (string), HAL_MAX_DELAY);
-}
 
 HAL_StatusTypeDef FLASHCORE :: erasePage()
 {
 	HAL_FLASH_Unlock();
 	FLASH_EraseInitTypeDef flashErase;
 	flashErase.TypeErase = FLASH_TYPEERASE_PAGES;
+	flashErase.Page = _page;
 	flashErase.Banks = _bank;
-	flashErase.Page = _pageAddr;
 	flashErase.NbPages = _nbPages;
 
 	uint32_t pageError;
@@ -85,7 +77,7 @@ int FLASHCORE :: getCriticalThreshold()
 // setting and save warning level
 void FLASHCORE :: setWarningThreshold(int warning)
 {
-	_thresholds._warningTempThreshold = DATA_WAITING;
+	_thresholds._warningTempThreshold = DEFAULT_TEMP;
 	_thresholds._warning = warning;
 	HAL_StatusTypeDef status;
 	status = erasePage();
@@ -106,7 +98,7 @@ void FLASHCORE :: setWarningThreshold(int warning)
 // setting and save critical level
 void FLASHCORE :: setCriticalThreshold(int critical)
 {
-	_thresholds._criticalTempThreshold = DATA_WAITING;
+	_thresholds._criticalTempThreshold = DEFAULT_TEMP;
 	_thresholds._critical = critical;
 	HAL_StatusTypeDef status;
 	status = erasePage();
@@ -124,45 +116,23 @@ void FLASHCORE :: setCriticalThreshold(int critical)
 		printf("Critical event saved in flash");
 	}
 }
-// print warning / critical data
-void FLASHCORE :: printThresHoldsTemperature()
-{
-        THRESHOLDS* data = (THRESHOLDS *)(_pageAddr);
-        memcpy(&_thresholds, data, sizeof(THRESHOLDS));
-        if (_thresholds._criticalTempThreshold == DATA_WAITING){
-        	printf("Please insert critical temperature\r\n");
-        }
-        else{
-        	printf("critical = %d \r\n", _thresholds._critical);
-        }
-        if(_thresholds._warningTempThreshold == DATA_WAITING){
-        	printf("Please insert warning temperature\r\n");
-        }
-        else{
-        	printf("warning = %d \r\n", _thresholds._warning);
-        }
-
-
-}
 //get some statistics from the SD card
-void FLASHCORE :: SDDATA(){
+void FLASHCORE :: SDData(){
 	printf("\r\n~  SD card  ~\r\n\r\n");
 
 	HAL_Delay(1000); //a short delay is important to let the SD card settle
-
-	//Open the file system
-	fres = f_mount(&FatFs, "", 1); //1=mount now
-	if (fres != FR_OK) {
-	printf("f_mount error (%i)\r\n", fres);
-	while(1);
+	//Open the file
+	fres = f_open(&fil, "logger.txt", FA_READ);
+	if(fres != FR_OK)
+	{
+	  printf("File opening Error : (%i)\r\n", fres);
 	}
-
 	//Let's get some statistics from the SD card
 	DWORD free_clusters, free_sectors, total_sectors;
 
 	FATFS* getFreeFs;
 
-	fres = f_getfree("", &free_clusters, &getFreeFs);
+	fres = f_getfree("logger.txt", &free_clusters, &getFreeFs);
 	if (fres != FR_OK) {
 	printf("f_getfree error (%i)\r\n", fres);
 	while(1);
@@ -172,61 +142,35 @@ void FLASHCORE :: SDDATA(){
 	total_sectors = (getFreeFs->n_fatent - 2) * getFreeFs->csize;
 	free_sectors = free_clusters * getFreeFs->csize;
 
-	printf("SD card stats:\r\n%10lu KiB total drive space.\r\n%10lu KiB available.\r\n", total_sectors / 2, free_sectors / 2);
+	printf("SD card status:\r\n%10lu KiB total drive space.\r\n%10lu KiB available.\r\n", total_sectors / 2, free_sectors / 2);
 
+	f_close(&fil);
+	printf("Closing File!!!\r\n");
 }
-
-DWORD FLASHCORE::TIMERTC(){
-
-	time_t t;
-	    struct tm *stm;
-
-
-	    t = time(0);
-	    stm = localtime(&t);
-	    return (DWORD)(stm->tm_year - 80) << 25 |
-	           (DWORD)(stm->tm_mon + 1) << 21 |
-	           (DWORD)stm->tm_mday << 16 |
-	           (DWORD)stm->tm_hour << 11 |
-	           (DWORD)stm->tm_min << 5 |
-	           (DWORD)stm->tm_sec >> 1;
-
-}
-
-void FLASHCORE::RemoveFile()
+//remove file from  SD card
+void FLASHCORE::removeFileFromSD()
 {
-	do{
-	//Open the file system
-		fres = f_mount(&FatFs, "", 1); //1=mount now
-		if (fres != FR_OK) {
-			printf("No SD Card found (%i)\r\n", fres);
-			break;
-		}
-		printf("SD Card Mounted Successfully!!!\r\n");
+	//Open the file
+			fres = f_open(&fil, "logger.txt", FA_READ);
+			if(fres != FR_OK)
+			{
+			  printf("File opening Error : (%i)\r\n", fres);
+			}
+			//read the data
+			f_gets(buf, sizeof(buf), &fil);
+			printf("Read Data : %s\r\n", buf);
+			//close your file
+			f_close(&fil);
+			printf("Closing File!!!\r\n");
+	#if 0
+			fres = f_unlink("logger.txt");
+			if (fres != FR_OK){
+				printf("Cannot able to delete the file\n");
+			}
+			printf (buf, "*%s* has been removed successfully\n", fres);
+	#endif
 
-		//Open the file
-		fres = f_open(&fil, "logger.txt", FA_READ);
-		if(fres != FR_OK)
-		{
-		  printf("File opening Error : (%i)\r\n", fres);
-		  break;
-		}
-		//read the data
-		f_gets(buf, sizeof(buf), &fil);
-		printf("Read Data : %s\r\n", buf);
-		//close your file
-		f_close(&fil);
-		printf("Closing File!!!\r\n");
-#if 0
-		fres = f_unlink("logger.txt");
-		if (fres != FR_OK){
-			printf("Cannot able to delete the file\n");
-		}
-		printf (buf, "*%s* has been removed successfully\n", fres);
-#endif
-	}while(false);
-	//We're done, so de-mount the drive
-	  f_mount(NULL, "", 0);
-	  printf("SD Card Unmounted Successfully!!!\r\n");
 
 }
+
+

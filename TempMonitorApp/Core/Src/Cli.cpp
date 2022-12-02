@@ -15,50 +15,56 @@
 #include "ff.h"
 
 
-
-extern LED ledblue;
-extern int blinkOn;
+extern LED 			ledblue;
+extern int 			blinkOn;
 extern CliContainer container;
-extern BUZZER buzzer;
-extern _RTC rtc;
-extern Dht dht;
-extern FLASHCORE thresholdsFlash;
+extern BUZZER 		buzzer;
+extern _RTC 		rtc;
+extern Dht 			dht;
+extern FLASHCORE 	thresholdsFlash;
 
-
-
-
+void CliContainer::PrintCommand()
+{
+	commands->CommandName[COMMAND_NAME_SIZE];
+	memset(&commands, 0, sizeof(commands));
+	int _commandsCount = 0;
+	printf("Available commands:\r\n");
+		for (int i = 0; i < _commandsCount; i++) {
+			printf("\t%s\r\n", commands[i].CommandName);
+		}
+}
 
 void CliContainer::initCLIcontainer(){
 
 	//set / get time to the RTC
-	container.RegisterCommand("set-time",new rtcsettime(&rtc));
-	container.RegisterCommand("get-time",new rtcgettime(&rtc));
+	container.RegisterCommand("set-time",			new rtcsettime(&rtc));
+	container.RegisterCommand("get-time",			new rtcgettime(&rtc));
 
 	//set warning / critical temperature
-	container.RegisterCommand("warning", new WarningTempThreshold());
-	container.RegisterCommand("critical", new CriticalTempThreshold());
-	//container.RegisterCommand("print", new GetTempThresholdInfo());
+	container.RegisterCommand("set-warning", 		new WarningTempThreshold());
+	container.RegisterCommand("set-critical", 		new CriticalTempThreshold());
+	container.RegisterCommand("get-threshold-info", new GetTempThresholdInfo());
 
 	//get some statistics from the SD card
-	container.RegisterCommand("SD-data", new PrintSDData());
+	container.RegisterCommand("get-sd-data", 		new PrintSDData());
+	//print SD data to the screen
+	container.RegisterCommand("read-sd-data", 		new readSDCard(&rtc));
+
 	//Remove file from SD card
-	container.RegisterCommand("clear", new RemoveFileSDCard());
+	container.RegisterCommand("clear-file", 		new RemoveFileSDCard());
 
 	// switch on / off led
-	container.RegisterCommand("led-on",new ledOn(&ledblue));
-	container.RegisterCommand("led-off",new ledOff(&ledblue));
-	container.RegisterCommand("led-blink",new ledBlink(&ledblue));
+	container.RegisterCommand("led-on",				new ledOn(&ledblue));
+	container.RegisterCommand("led-off",			new ledOff(&ledblue));
+	container.RegisterCommand("led-blink",			new ledBlink(&ledblue));
 
 	//play / stop analog buzzer
-	container.RegisterCommand("play",new buzzeron(&buzzer));
-	container.RegisterCommand("stop",new buzzeroff(&buzzer));
-	// time as get_fattime function
-	container.RegisterCommand("time", new timeRTC());
+	container.RegisterCommand("play-buzzer",		new buzzeron(&buzzer));
+	container.RegisterCommand("stop-buzzer",		new buzzeroff(&buzzer));
+	// help command to see all the command line options
+	container.RegisterCommand("help", 				new helpCMD());
 
-	/*
-	container.RegisterCommand("rtc-start",new rtcstart(&rtc));
-	container.RegisterCommand("rtc-stop",new rtcstop(&rtc));
-	*/
+
 
 
 

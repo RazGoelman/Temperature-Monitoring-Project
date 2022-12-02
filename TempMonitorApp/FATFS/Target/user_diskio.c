@@ -177,8 +177,3 @@ DRESULT USER_ioctl (
 }
 #endif /* _USE_IOCTL == 1 */
 
-//DWORD get_fattime (void)
-//{
-//	return 0;
-//
-//}

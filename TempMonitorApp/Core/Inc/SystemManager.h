@@ -12,11 +12,9 @@ extern "C" {
 
 #include "main.h"
 
-#define ONE_SECOND 1000
-#define DHT_DEVICE_ADDR 0xD0
+#define ONE_SECOND 			1000
+#define DHT_DEVICE_ADDR 	0xD0
 
-#define WORNINGTEMPERATURE 20.00
-#define CRITICALTEMPERATURE 25.00
 
 void StartDht(void *argument);
 void StartcommTask(void *argument);

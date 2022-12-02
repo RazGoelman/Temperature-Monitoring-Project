@@ -26,6 +26,8 @@ private:
 	uint8_t _data[5];
 	double _temperature;
 	_alartState _dhtstate;
+	int _counter;
+	int _maxCounter;
 
 public:
 
@@ -36,11 +38,14 @@ public:
 		_timer = timer;
 		_temperature = 0.0;
 		_dhtstate = TEMP_NORMAL;
+		_counter= 0;
+		_maxCounter= 0;
 	}
 
 	bool waitWhileEqual (int value, int expectedTime);
 	void setGpioOutput();
 	void setGpioInput();
+	void setGpioExti();
 	_alartState getState();
 	void setState(_alartState _state);
 	int Dht_read();

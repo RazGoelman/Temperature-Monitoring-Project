@@ -6,7 +6,7 @@
 #ifndef INC_LED_H_
 #define INC_LED_H_
 
-#define DEFAULT_PERIOD 500
+#define DEFAULT_PERIOD 	500
 
 #include "main.h"
 
@@ -21,7 +21,7 @@ private:
 	GPIO_TypeDef* GPIOx;
 	uint16_t GPIO_Pin;
 	int blinkcount = 0;
-	int delay = 50 ;
+	int delay = 500 ;
 
 	LED_STATE STATE;
 

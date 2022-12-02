@@ -14,13 +14,10 @@
 extern "C" {
 #endif
 
-
 int commTaskReady(UART_HandleTypeDef* huart2);
-
 int commTask();
 void handleCommand();
 //void commTask(void *argument);
-
 
 #ifdef __cplusplus
 }

@@ -6,10 +6,23 @@
 #include "Rtc.h"
 #include "SystemManager.h"
 #include <stdio.h>
+#include <string.h>
 #include "main.h"
+#include "fatfs.h"
+#include "time.h"
+#include "ff.h"
 #define RTC_START_STOP      (1 << 7)
 #define RTC_DATE_TIME_SIZE  7
 #define DEVICE_ADDR         0xD0
+
+
+//some variables for FatFs
+extern FATFS 	FatFs; 	//Fatfs handle
+extern FIL 		fil; 	//File handle
+extern FRESULT 	fres; //Result after operations
+char 			readBuf[100];
+extern TCHAR* 	path;
+
 
 const uint32_t DaysInYear    = 365;
 const uint32_t SecondsInMin  = 60;
@@ -37,7 +50,6 @@ _RTC::_RTC(I2C_HandleTypeDef * hi2c, uint32_t devAddr)
   _hi2c = hi2c;
   _devAddr = devAddr;
 }
-
 void _RTC::rtcStart()
 {
 	uint8_t sec = 0;
@@ -45,7 +57,6 @@ void _RTC::rtcStart()
 	sec &= ~RTC_START_STOP;
 	HAL_I2C_Mem_Write(_hi2c, _devAddr, 0, 1, &sec, 1, 0xFF);
 }
-
 void _RTC::rtcStop()
 {
 	uint8_t sec = 0;
@@ -53,19 +64,16 @@ void _RTC::rtcStop()
 	sec |= RTC_START_STOP;
 	HAL_I2C_Mem_Write(_hi2c, _devAddr, 0, 1, &sec, 1, 0xFF);
 }
-
 int _RTC::rtcIsRunning()
 {
 	uint8_t sec = 0;
 	HAL_I2C_Mem_Read(_hi2c, _devAddr, 0, 1, &sec, 1, 0xFF);
 	return (sec & RTC_START_STOP) == 0;
 }
-
 static int bcdToInt(uint8_t bcd)
 {
 	return (bcd >> 4) * 10 + (bcd & 0x0F);
 }
-
 static uint8_t intToBcd(int value, int minVal, int maxVal)
 {
 	if (value < minVal || value > maxVal) {
@@ -74,18 +82,15 @@ static uint8_t intToBcd(int value, int minVal, int maxVal)
 
 	return ((value / 10) << 4) | (value % 10);
 }
-
 void _RTC::rtcGetTime()
 {
 	uint8_t buffer[RTC_DATE_TIME_SIZE];
 	DateTime * mytime = new DateTime;
 	if(HAL_I2C_Mem_Read(_hi2c, _devAddr, 0, 1, buffer, RTC_DATE_TIME_SIZE, 0xFF) == HAL_OK){
-		//printf("Read success\r\n");
 	}
 	else{
 		printf("Read failed\r\n");
 	}
-
 	// remove stop bit if set
 	buffer[0] &= ~RTC_START_STOP;
 	mytime->sec = bcdToInt(buffer[0]);
@@ -97,8 +102,6 @@ void _RTC::rtcGetTime()
 	mytime->year = bcdToInt(buffer[6]);
 	printf("Date: %02d:%02d:%02d  %02d %02d/%02d/%02d \r\n ",mytime->hours,mytime->min,mytime->sec,mytime->weekDay,mytime->day,mytime->month,mytime->year);
 }
-
-
 void _RTC::rtcSetTime(DateTime * _datetime)
 {
 	dateTime = _datetime;
@@ -119,3 +122,37 @@ void _RTC::rtcSetTime(DateTime * _datetime)
 		printf("Write FAILED\r\n");
 	}
 }
+void _RTC::writeToFileSD(const char * data)
+{
+	//Now let's try and write a file "write.txt"
+	fres = f_open(&fil, "logger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	if(fres != FR_OK)
+	{
+		printf("f_open error (%i)\r\n", fres);
+	}
+	// write temperature
+	strcpy((char*)readBuf, data);
+	UINT bytesWrote;
+	fres = f_write(&fil, (char*)readBuf,strlen(data), &bytesWrote);
+
+	if(fres != FR_OK) {
+
+		printf("f_write error (%i)\r\n", fres);
+	}
+	f_close(&fil);
+}
+void _RTC::readFileFromSD()
+{
+	fres = f_open(&fil, "logger.txt", FA_READ | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	if(fres != FR_OK)
+	{
+		printf("f_open error (%i)\r\n", fres);
+	}
+	TCHAR* path = f_gets((TCHAR*)readBuf, 100, &fil);
+	if (path == 0)
+	{
+		printf("f_gets error (%i)\r\n", fres);
+	}
+	f_close(&fil);
+}
+

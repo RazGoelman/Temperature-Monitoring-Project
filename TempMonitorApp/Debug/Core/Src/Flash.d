@@ -50,7 +50,9 @@ Core/Src/Flash.o: ../Core/Src/Flash.cpp ../Core/Inc/Flash.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h \
  ../FATFS/Target/user_diskio_spi.h \
- ../Middlewares/Third_Party/FatFs/src/diskio.h
+ ../Middlewares/Third_Party/FatFs/src/diskio.h ../Core/Inc/Cli.h \
+ ../Core/Inc/Flash.h ../Core/Inc/Buzzer.h ../Core/Inc/Led.h \
+ ../Core/Inc/Rtc.h ../Core/Inc/Dht.h
 ../Core/Inc/Flash.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
@@ -108,3 +110,9 @@ Core/Src/Flash.o: ../Core/Src/Flash.cpp ../Core/Inc/Flash.h \
 ../FATFS/Target/user_diskio.h:
 ../FATFS/Target/user_diskio_spi.h:
 ../Middlewares/Third_Party/FatFs/src/diskio.h:
+../Core/Inc/Cli.h:
+../Core/Inc/Flash.h:
+../Core/Inc/Buzzer.h:
+../Core/Inc/Led.h:
+../Core/Inc/Rtc.h:
+../Core/Inc/Dht.h:

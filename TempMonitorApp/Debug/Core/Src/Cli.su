@@ -1,53 +1,62 @@
-../Core/Inc/Cli.h:35:10:Cli::~Cli()	16	static
-../Core/Inc/Cli.h:35:10:virtual Cli::~Cli()	16	static
-../Core/Inc/Cli.h:51:7:void CliContainer::RegisterCommand(const char*, Cli*)	24	static
-../Core/Inc/Cli.h:32:7:constexpr Cli::Cli()	16	static
-../Core/Inc/Cli.h:78:2:ledOn::ledOn(LED*)	16	static
-../Core/Inc/Cli.h:81:7:virtual void ledOn::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:89:2:ledOff::ledOff(LED*)	16	static
-../Core/Inc/Cli.h:92:7:virtual void ledOff::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:100:2:ledBlink::ledBlink(LED*)	16	static
-../Core/Inc/Cli.h:103:7:virtual void ledBlink::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:139:2:rtcgettime::rtcgettime(_RTC*)	16	static
-../Core/Inc/Cli.h:142:7:virtual void rtcgettime::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:152:2:rtcsettime::rtcsettime(_RTC*)	16	static
-../Core/Inc/Cli.h:155:7:virtual void rtcsettime::doCommand(const char*)	104	static
-../Core/Inc/Cli.h:211:2:buzzeron::buzzeron(BUZZER*)	16	static
-../Core/Inc/Cli.h:214:7:virtual void buzzeron::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:222:2:buzzeroff::buzzeroff(BUZZER*)	16	static
-../Core/Inc/Cli.h:225:7:virtual void buzzeroff::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:236:2:WarningTempThreshold::WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:240:7:virtual void WarningTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:252:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:256:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:282:2:PrintSDData::PrintSDData()	16	static
-../Core/Inc/Cli.h:285:7:virtual void PrintSDData::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:294:3:RemoveFileSDCard::RemoveFileSDCard()	16	static
-../Core/Inc/Cli.h:297:8:virtual void RemoveFileSDCard::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:310:3:timeRTC::timeRTC()	16	static
-../Core/Inc/Cli.h:313:8:virtual void timeRTC::doCommand(const char*)	16	static
-../Core/Src/Cli.cpp:31:6:void CliContainer::initCLIcontainer()	24	static
-../Core/Inc/Cli.h:305:7:timeRTC::~timeRTC()	16	static
-../Core/Inc/Cli.h:305:7:virtual timeRTC::~timeRTC()	16	static
-../Core/Inc/Cli.h:290:7:RemoveFileSDCard::~RemoveFileSDCard()	16	static
-../Core/Inc/Cli.h:290:7:virtual RemoveFileSDCard::~RemoveFileSDCard()	16	static
-../Core/Inc/Cli.h:278:8:PrintSDData::~PrintSDData()	16	static
-../Core/Inc/Cli.h:278:8:virtual PrintSDData::~PrintSDData()	16	static
-../Core/Inc/Cli.h:248:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:248:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:232:7:WarningTempThreshold::~WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:232:7:virtual WarningTempThreshold::~WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:218:7:buzzeroff::~buzzeroff()	16	static
-../Core/Inc/Cli.h:218:7:virtual buzzeroff::~buzzeroff()	16	static
-../Core/Inc/Cli.h:207:7:buzzeron::~buzzeron()	16	static
-../Core/Inc/Cli.h:207:7:virtual buzzeron::~buzzeron()	16	static
-../Core/Inc/Cli.h:148:7:rtcsettime::~rtcsettime()	16	static
-../Core/Inc/Cli.h:148:7:virtual rtcsettime::~rtcsettime()	16	static
-../Core/Inc/Cli.h:135:7:rtcgettime::~rtcgettime()	16	static
-../Core/Inc/Cli.h:135:7:virtual rtcgettime::~rtcgettime()	16	static
-../Core/Inc/Cli.h:96:7:ledBlink::~ledBlink()	16	static
-../Core/Inc/Cli.h:96:7:virtual ledBlink::~ledBlink()	16	static
-../Core/Inc/Cli.h:85:7:ledOff::~ledOff()	16	static
-../Core/Inc/Cli.h:85:7:virtual ledOff::~ledOff()	16	static
-../Core/Inc/Cli.h:74:7:ledOn::~ledOn()	16	static
-../Core/Inc/Cli.h:74:7:virtual ledOn::~ledOn()	16	static
+../Core/Inc/Cli.h:31:10:Cli::~Cli()	16	static
+../Core/Inc/Cli.h:31:10:virtual Cli::~Cli()	16	static
+../Core/Inc/Cli.h:47:7:void CliContainer::RegisterCommand(const char*, Cli*)	24	static
+../Core/Inc/Cli.h:28:7:constexpr Cli::Cli()	16	static
+../Core/Inc/Cli.h:76:2:ledOn::ledOn(LED*)	16	static
+../Core/Inc/Cli.h:79:7:virtual void ledOn::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:87:2:ledOff::ledOff(LED*)	16	static
+../Core/Inc/Cli.h:90:7:virtual void ledOff::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:98:2:ledBlink::ledBlink(LED*)	16	static
+../Core/Inc/Cli.h:101:7:virtual void ledBlink::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:137:2:rtcgettime::rtcgettime(_RTC*)	16	static
+../Core/Inc/Cli.h:140:7:virtual void rtcgettime::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:150:2:rtcsettime::rtcsettime(_RTC*)	16	static
+../Core/Inc/Cli.h:153:7:virtual void rtcsettime::doCommand(const char*)	104	static
+../Core/Inc/Cli.h:205:2:readSDCard::readSDCard(_RTC*)	16	static
+../Core/Inc/Cli.h:208:7:virtual void readSDCard::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:223:2:buzzeron::buzzeron(BUZZER*)	16	static
+../Core/Inc/Cli.h:226:7:virtual void buzzeron::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:235:2:buzzeroff::buzzeroff(BUZZER*)	16	static
+../Core/Inc/Cli.h:238:7:virtual void buzzeroff::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:249:2:WarningTempThreshold::WarningTempThreshold()	16	static
+../Core/Inc/Cli.h:253:7:virtual void WarningTempThreshold::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:265:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:269:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:282:2:GetTempThresholdInfo::GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:285:7:virtual void GetTempThresholdInfo::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:308:2:PrintSDData::PrintSDData()	16	static
+../Core/Inc/Cli.h:310:7:virtual void PrintSDData::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:319:3:RemoveFileSDCard::RemoveFileSDCard()	16	static
+../Core/Inc/Cli.h:322:8:virtual void RemoveFileSDCard::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:337:2:helpCMD::helpCMD()	16	static
+../Core/Inc/Cli.h:340:7:virtual void helpCMD::doCommand(const char*)	16	static
+../Core/Src/Cli.cpp:26:6:void CliContainer::PrintCommand()	24	static
+../Core/Src/Cli.cpp:37:6:void CliContainer::initCLIcontainer()	24	static
+../Core/Inc/Cli.h:333:7:helpCMD::~helpCMD()	16	static
+../Core/Inc/Cli.h:333:7:virtual helpCMD::~helpCMD()	16	static
+../Core/Inc/Cli.h:315:7:RemoveFileSDCard::~RemoveFileSDCard()	16	static
+../Core/Inc/Cli.h:315:7:virtual RemoveFileSDCard::~RemoveFileSDCard()	16	static
+../Core/Inc/Cli.h:304:8:PrintSDData::~PrintSDData()	16	static
+../Core/Inc/Cli.h:304:8:virtual PrintSDData::~PrintSDData()	16	static
+../Core/Inc/Cli.h:277:7:GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:277:7:virtual GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:261:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:261:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:245:7:WarningTempThreshold::~WarningTempThreshold()	16	static
+../Core/Inc/Cli.h:245:7:virtual WarningTempThreshold::~WarningTempThreshold()	16	static
+../Core/Inc/Cli.h:231:7:buzzeroff::~buzzeroff()	16	static
+../Core/Inc/Cli.h:231:7:virtual buzzeroff::~buzzeroff()	16	static
+../Core/Inc/Cli.h:219:7:buzzeron::~buzzeron()	16	static
+../Core/Inc/Cli.h:219:7:virtual buzzeron::~buzzeron()	16	static
+../Core/Inc/Cli.h:201:7:readSDCard::~readSDCard()	16	static
+../Core/Inc/Cli.h:201:7:virtual readSDCard::~readSDCard()	16	static
+../Core/Inc/Cli.h:146:7:rtcsettime::~rtcsettime()	16	static
+../Core/Inc/Cli.h:146:7:virtual rtcsettime::~rtcsettime()	16	static
+../Core/Inc/Cli.h:133:7:rtcgettime::~rtcgettime()	16	static
+../Core/Inc/Cli.h:133:7:virtual rtcgettime::~rtcgettime()	16	static
+../Core/Inc/Cli.h:94:7:ledBlink::~ledBlink()	16	static
+../Core/Inc/Cli.h:94:7:virtual ledBlink::~ledBlink()	16	static
+../Core/Inc/Cli.h:83:7:ledOff::~ledOff()	16	static
+../Core/Inc/Cli.h:83:7:virtual ledOff::~ledOff()	16	static
+../Core/Inc/Cli.h:72:7:ledOn::~ledOn()	16	static
+../Core/Inc/Cli.h:72:7:virtual ledOn::~ledOn()	16	static

@@ -1,11 +1,8 @@
-../Core/Src/Flash.cpp:27:6:void Send_Uart(char*)	16	static
-../Core/Src/Flash.cpp:32:19:HAL_StatusTypeDef FLASHCORE::erasePage()	40	static
-../Core/Src/Flash.cpp:56:19:HAL_StatusTypeDef FLASHCORE::writeToPage(void*, int)	40	static
-../Core/Src/Flash.cpp:76:5:int FLASHCORE::getWarningThreshold()	16	static
-../Core/Src/Flash.cpp:81:5:int FLASHCORE::getCriticalThreshold()	16	static
-../Core/Src/Flash.cpp:86:6:void FLASHCORE::setWarningThreshold(int)	24	static
-../Core/Src/Flash.cpp:107:6:void FLASHCORE::setCriticalThreshold(int)	24	static
-../Core/Src/Flash.cpp:128:6:void FLASHCORE::printThresHoldsTemperature()	24	static
-../Core/Src/Flash.cpp:148:6:void FLASHCORE::SDDATA()	32	static
-../Core/Src/Flash.cpp:179:7:DWORD FLASHCORE::TIMERTC()	32	static
-../Core/Src/Flash.cpp:196:6:void FLASHCORE::RemoveFile()	16	static
+../Core/Src/Flash.cpp:24:19:HAL_StatusTypeDef FLASHCORE::erasePage()	40	static
+../Core/Src/Flash.cpp:48:19:HAL_StatusTypeDef FLASHCORE::writeToPage(void*, int)	40	static
+../Core/Src/Flash.cpp:68:5:int FLASHCORE::getWarningThreshold()	16	static
+../Core/Src/Flash.cpp:73:5:int FLASHCORE::getCriticalThreshold()	16	static
+../Core/Src/Flash.cpp:78:6:void FLASHCORE::setWarningThreshold(int)	24	static
+../Core/Src/Flash.cpp:99:6:void FLASHCORE::setCriticalThreshold(int)	24	static
+../Core/Src/Flash.cpp:120:6:void FLASHCORE::SDData()	32	static
+../Core/Src/Flash.cpp:151:6:void FLASHCORE::removeFileFromSD()	16	static

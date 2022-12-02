@@ -33,6 +33,8 @@ public:
 	int rtcIsRunning();
 	void rtcGetTime();
 	void rtcSetTime(DateTime * _datetime);
+	void writeToFileSD(const char * data);
+	void readFileFromSD();
 };
 
 

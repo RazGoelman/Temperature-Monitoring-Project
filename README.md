@@ -47,6 +47,11 @@
     • SPI Protocol
 
 
+**System block diagram:**
+
+find an attached file 'Temperature Monitoring block diagram.pdf'
+
+
 **Use cases:**
 
 **Temperature sensor:**
@@ -139,7 +144,6 @@
    
      The temperature task will chack evry 1 ms the sensor output and will active according to the returen temperature
 
-   
          // this task measure ever one second the temp.
       extern "C" void StartDht(void *argument)
       {
@@ -159,29 +163,25 @@
                  threshold  write into the log file*/
 
                //thresholdsFlash.getCriticalThreshold()
-               if (dht.getTemp() >= criticalThreshold) {
+               if (dht.getTemp() >= thresholdsFlash.getCriticalThreshold()) {
                      dht.setState(TEMP_CRITICAL);
                      ledblue.Led_Off();
                      button.setState(BUTTON_PULLUP);
                      ledred.Led_Blink();
                      buzzer.buzzerStartPlay();
-                     //utoa(dht.getTemp(),(char*)readBuf,20);
-                     //printf("temp is %.2f \r\n", dht.getTemp());
                }
-               else if(dht.getTemp() >= warningThreshold){
+               else if(dht.getTemp() >= thresholdsFlash.getWarningThreshold()){
                      dht.setState(TEMP_WARNING);
                      button.setState(BUTTON_PULLDOWN);
                      ledblue.Led_Off();
                      ledred.Led_On();
                      buzzer.buzzerStopPlay();
-
-
                }
                else {
                      dht.setState(TEMP_NORMAL);
                      button.setState(BUTTON_PULLDOWN);
                      buzzer.buzzerStopPlay();
-                     ledblue.Led_On();
+                     ledblue.Led_Blink();
                      ledred.Led_Off();
                }
             }
@@ -207,12 +207,6 @@
     The flash task will save all the temperature thresholds (alerts) on file.
 
 
-**Block diagram :**
-
-   ![image](https://user-images.githubusercontent.com/66781442/203984996-b71b63df-40f6-4a01-8063-c9678e22ba80.png)
-
-**System polymorphism:**
-
 **FreeRTOS is connected to:**
 
      Temperature sensor - GPIO output
@@ -221,6 +215,7 @@
        
      Flash Task - SPI protocol
        
+**Peripherals that are connected to the Nucleo board**
 
 **Led**  
 

@@ -15,11 +15,9 @@ extern "C" {
 #define ONE_SECOND 			1000
 #define DHT_DEVICE_ADDR 	0xD0
 
-
+void systemManagerInit();
 void StartDht(void *argument);
 void StartcommTask(void *argument);
-void managerInit();
-void StartLedTask(void *argument);
 void StartFlashTask(void *argument);
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 #ifdef __cplusplus

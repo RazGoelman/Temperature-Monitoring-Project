@@ -45,13 +45,12 @@ FRESULT fres; //Result after operations
 char 	Buf[100];
 
 // Initialized SD card file
-void SD_init()
+void sdInit()
 {
 		fres = f_mount(&FatFs, "", 1); //1=mount now
 		if (fres != FR_OK) {
 		printf("f_mount error (%i)\r\n", fres);
 		}
-		//Now let's try and write a file "write.txt"
 		fres = f_open(&fil, "logger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 		if(fres == FR_OK) {
 		printf("I was able to open 'logger.txt' for writing\r\n");
@@ -60,14 +59,14 @@ void SD_init()
 		printf("f_open error (%i)\r\n", fres);
 		}
 }
-void managerInit()
+void systemManagerInit()
 {
-	WarningTempThreshold(warningThreshold);
-	CriticalTempThreshold(CriticalTempThreshold);
+	thresholdsFlash.setCriticalThreshold(DEFAULT_TEMP);
+	thresholdsFlash.setWarningThreshold(DEFAULT_TEMP);
+	sdInit();
 	HAL_TIM_Base_Init(&htim6);
 	HAL_TIM_Base_Start_IT(&htim3);
 	container.initCLIcontainer();
-	SD_init();
 	HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
 }
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -79,9 +78,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			thresholdsFlash.setCriticalThreshold(DEFAULT_TEMP);
 			buzzer.buzzerStopPlay();
 		}
-
 }
-
 // this task will start the cli option for the user.
 extern "C" void StartcommTask(void *argument)
 {
@@ -97,7 +94,7 @@ extern "C" void StartcommTask(void *argument)
 		}
 		osThreadTerminate(osThreadGetId());
 }
-// this task measure ever one second the temp.
+// this task measure ever one second the temperature.
 extern "C" void StartDht(void *argument)
 {
 	while(1)

@@ -2,25 +2,14 @@
 ../Core/Inc/Btn.h:25:2:Btn::Btn(GPIO_TypeDef*, uint16_t)	24	static
 ../Core/Inc/Dht.h:34:2:Dht::Dht(GPIO_TypeDef*, uint16_t, TIM_HandleTypeDef*)	24	static
 ../Core/Inc/Flash.h:36:2:FLASHCORE::FLASHCORE(uint32_t, uint32_t)	24	static
-../Core/Inc/Cli.h:31:10:Cli::~Cli()	16	static
-../Core/Inc/Cli.h:31:10:virtual Cli::~Cli()	16	static
 ../Core/Inc/Cli.h:45:2:CliContainer::CliContainer()	16	static
 ../Core/Inc/Cli.h:46:2:CliContainer::~CliContainer()	16	static
-../Core/Inc/Cli.h:28:7:constexpr Cli::Cli()	16	static
-../Core/Inc/Cli.h:249:2:WarningTempThreshold::WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:253:7:virtual void WarningTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:265:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:269:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
-../Core/Src/SystemManager.cpp:48:6:void SD_init()	8	static
-../Core/Src/SystemManager.cpp:63:6:void managerInit()	40	static
-../Core/Src/SystemManager.cpp:73:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
-../Core/Src/SystemManager.cpp:86:17:void StartcommTask(void*)	16	static
-../Core/Src/SystemManager.cpp:101:17:void StartDht(void*)	32	static
-../Core/Src/SystemManager.cpp:149:17:void StartFlashTask(void*)	72	static
-../Core/Inc/Cli.h:261:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:261:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:245:7:WarningTempThreshold::~WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:245:7:virtual WarningTempThreshold::~WarningTempThreshold()	16	static
-../Core/Src/SystemManager.cpp:182:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/Src/SystemManager.cpp:182:1:cpp)	8	static
-../Core/Src/SystemManager.cpp:182:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:48:6:void sdInit()	8	static
+../Core/Src/SystemManager.cpp:62:6:void systemManagerInit()	8	static
+../Core/Src/SystemManager.cpp:72:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
+../Core/Src/SystemManager.cpp:83:17:void StartcommTask(void*)	16	static
+../Core/Src/SystemManager.cpp:98:17:void StartDht(void*)	32	static
+../Core/Src/SystemManager.cpp:146:17:void StartFlashTask(void*)	72	static
+../Core/Src/SystemManager.cpp:179:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/SystemManager.cpp:179:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:179:1:cpp)	8	static

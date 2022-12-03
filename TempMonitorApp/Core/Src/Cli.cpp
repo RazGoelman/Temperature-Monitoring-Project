@@ -23,6 +23,7 @@ extern _RTC 		rtc;
 extern Dht 			dht;
 extern FLASHCORE 	thresholdsFlash;
 
+//show all the command line options
 void CliContainer::PrintCommand()
 {
 	commands->CommandName[COMMAND_NAME_SIZE];
@@ -37,10 +38,10 @@ void CliContainer::PrintCommand()
 void CliContainer::initCLIcontainer(){
 
 	//set / get time to the RTC
-	container.RegisterCommand("set-time",			new rtcsettime(&rtc));
-	container.RegisterCommand("get-time",			new rtcgettime(&rtc));
+	container.RegisterCommand("set-date-time",		new rtcsettime(&rtc));
+	container.RegisterCommand("get-date-time",		new rtcgettime(&rtc));
 
-	//set warning / critical temperature
+	//set warning / critical, threshold temperature
 	container.RegisterCommand("set-warning", 		new WarningTempThreshold());
 	container.RegisterCommand("set-critical", 		new CriticalTempThreshold());
 	container.RegisterCommand("get-threshold-info", new GetTempThresholdInfo());
@@ -63,8 +64,6 @@ void CliContainer::initCLIcontainer(){
 	container.RegisterCommand("stop-buzzer",		new buzzeroff(&buzzer));
 	// help command to see all the command line options
 	container.RegisterCommand("help", 				new helpCMD());
-
-
 
 
 

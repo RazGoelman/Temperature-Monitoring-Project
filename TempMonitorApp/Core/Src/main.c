@@ -158,7 +158,7 @@ int main(void)
   MX_SPI1_Init();
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
-  managerInit();
+  systemManagerInit();
 
   /* USER CODE END 2 */
 

@@ -1,5 +1,5 @@
-# Temperature-Monitoring-Project
-# (VERSION 1.0)
+# **Temperature-Monitoring-Project**
+(VERSION 1.0)
 
 
 **Project Goal:**

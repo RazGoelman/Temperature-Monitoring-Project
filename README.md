@@ -52,6 +52,7 @@
 find an attached file 'Temperature Monitoring block diagram.pdf'
 
 
+
 **Use cases:**
 
 **Temperature sensor:**

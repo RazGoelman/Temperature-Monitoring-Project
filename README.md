@@ -49,7 +49,7 @@
 
 **System block diagram:**
 
-find an attached file 'Temperature Monitoring block diagram.pdf'
+      find an attached file 'Temperature Monitoring block diagram.pdf'
 
 
 

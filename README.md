@@ -2,7 +2,7 @@
 (VERSION 1.0)
 
 
-**Project Goal:**
+**project Goal:**
 
    Application of temperature monitoring sensor, the project is implemented by FreeRTOS using C++ 
 

@@ -48,8 +48,11 @@
 
 
 **System block diagram:**
+   
+   ![image](https://user-images.githubusercontent.com/66781442/208040245-6057311c-868e-4bbb-8c60-e8e1728fae74.png)
 
-      find an attached file 'Temperature Monitoring block diagram.pdf'
+   
+   ![image](https://user-images.githubusercontent.com/66781442/208039832-db60c5b7-ced5-49cd-8d8e-0d2eac882905.png)
 
 
 

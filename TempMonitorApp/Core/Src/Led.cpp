@@ -10,22 +10,26 @@
 LED::LED(GPIO_TypeDef* GPIOx,uint16_t GPIO_Pin):
 		GPIOx(GPIOx),GPIO_Pin(GPIO_Pin)
 {
+	blinkcount  = 0;
+	delay 		= 50;
 }
 
-void LED::Led_On()
+void LED::On()
 {
 	HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_SET);
 
 }
-void LED::Led_Off()
+void LED::Off()
 {
 	HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_RESET);
 
 }
-void LED::LED_delay(int num){
+
+void LED::Delay(int num){
 	delay = num;
 }
-void LED::Led_Blink()
+
+void LED::Blink()
 {
 	HAL_GPIO_TogglePin(GPIOx,GPIO_Pin);
 	HAL_Delay(delay);

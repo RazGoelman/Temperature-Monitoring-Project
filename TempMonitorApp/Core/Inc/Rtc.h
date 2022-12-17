@@ -8,22 +8,23 @@
 
 #include "main.h"
 
-typedef struct DateTime_
+struct _DateTime
 {
-	int sec;
-	int min;
-	int hours;
-	int weekDay;
-	int day;
-	int month;
-	int year;
-} DateTime;
+							int sec;
+							int min;
+							int hours;
+							int weekDay;
+							int day;
+							int month;
+							int year;
+};
 
 class _RTC{
 private :
-	I2C_HandleTypeDef * _hi2c;
-	uint8_t _devAddr;
-	DateTime * dateTime;
+	I2C_HandleTypeDef * 	_hi2c;
+	uint8_t 				_devAddr;
+	_DateTime * 			dateTime;
+
 public:
 
 	 _RTC(I2C_HandleTypeDef * hi2c, uint32_t devAddr);
@@ -32,8 +33,8 @@ public:
 	void rtcStop();
 	int rtcIsRunning();
 	void rtcGetTime();
-	void rtcSetTime(DateTime * _datetime);
-	void writeToFileSD(const char * data);
+	void rtcSetTime			(_DateTime * _datetime);
+	void writeToFileSD		(const char * data);
 	void readFileFromSD();
 };
 

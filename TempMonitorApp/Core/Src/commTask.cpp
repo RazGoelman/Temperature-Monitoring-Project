@@ -14,11 +14,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_BUFFER_LENGTH 100
-uint8_t cmdbuffer[MAX_BUFFER_LENGTH];
+#define MAX_BUFFER_LENGTH 			100
+uint8_t cmdbuffer					[MAX_BUFFER_LENGTH];
 
-int cmdcount = 0;
-int cmdprint = 0;
+int cmdcount 						= 0;
+int cmdprint 						= 0;
 
 extern CliContainer container;
 extern UART_HandleTypeDef huart2;
@@ -52,8 +52,8 @@ int commTask() {
 	HAL_UART_Transmit(&huart2, (uint8_t*) "\r\n", 2, 0xFFFF);
 
 	cmdbuffer[cmdcount] = 0;
-	cmdcount = 0;
-	cmdprint = 0;
+	cmdcount 			= 0;
+	cmdprint 			= 0;
 	return 1;
 }
 void handleCommand() {

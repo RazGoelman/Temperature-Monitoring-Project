@@ -29,10 +29,10 @@ void Dht :: setGpioOutput()
 {
 	GPIO_InitTypeDef gpioStruct = {0};
 
-	gpioStruct.Pin = _gpioPin;
-	gpioStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	gpioStruct.Pull = GPIO_NOPULL;
-	gpioStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	gpioStruct.Pin 		= _gpioPin;
+	gpioStruct.Mode 	= GPIO_MODE_OUTPUT_PP;
+	gpioStruct.Pull 	= GPIO_NOPULL;
+	gpioStruct.Speed 	= GPIO_SPEED_FREQ_LOW;
 
 	HAL_GPIO_Init(_gpioPort, &gpioStruct);
 	HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
@@ -42,10 +42,10 @@ void Dht :: setGpioInput()
 {
 	GPIO_InitTypeDef gpioStruct = {0};
 
-	gpioStruct.Pin = _gpioPin;
-	gpioStruct.Mode = GPIO_MODE_INPUT;
-	gpioStruct.Pull = GPIO_NOPULL;
-	gpioStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	gpioStruct.Pin 		= _gpioPin;
+	gpioStruct.Mode 	= GPIO_MODE_INPUT;
+	gpioStruct.Pull 	= GPIO_NOPULL;
+	gpioStruct.Speed 	= GPIO_SPEED_FREQ_LOW;
 
 	HAL_GPIO_Init(_gpioPort, &gpioStruct);
 	HAL_NVIC_DisableIRQ(EXTI9_5_IRQn);
@@ -55,14 +55,14 @@ void Dht :: setGpioExti()
 {
 	GPIO_InitTypeDef gpioStruct = {0};
 
-	gpioStruct.Pin = _gpioPin;
-	gpioStruct.Mode = GPIO_MODE_IT_FALLING;
-	gpioStruct.Pull = GPIO_PULLUP;
+	gpioStruct.Pin 		= _gpioPin;
+	gpioStruct.Mode 	= GPIO_MODE_IT_FALLING;
+	gpioStruct.Pull 	= GPIO_PULLUP;
 
 	HAL_GPIO_Init(_gpioPort, &gpioStruct);
 	HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 }
-int Dht :: Dht_read()
+int Dht :: read()
 {
 	setGpioOutput();
 
@@ -71,7 +71,6 @@ int Dht :: Dht_read()
 
 	// switch the sensor on by putting the line in '0'
 	HAL_GPIO_WritePin(_gpioPort, _gpioPin,(GPIO_PinState) 0);
-	//while (__HAL_TIM_GET_COUNTER(_timer) < 19000);//change osDelay(19)
 	osDelay(19);
 
 	HAL_GPIO_WritePin(_gpioPort, _gpioPin, (GPIO_PinState)1);
@@ -126,20 +125,12 @@ int Dht :: Dht_read()
 	return HAL_OK;
 }
 
-double Dht :: getTemp()
-{
-	return _temperature;
-}
-_alartState Dht :: getState()
-{
-	return _dhtstate;
-}
 void Dht :: setState(_alartState _state)
 {
 	_dhtstate = _state;
 }
 
-void Dht::Dht_onGpioInterrupt(uint16_t pin)
+void Dht::onGpioInterrupt(uint16_t pin)
 {
 	 if (_gpioPin != pin) {
 	       return;

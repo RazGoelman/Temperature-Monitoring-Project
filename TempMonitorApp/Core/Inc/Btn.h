@@ -16,24 +16,24 @@ enum _buttonState
 class Btn
 {
 private:
-	GPIO_TypeDef* _gpioPort;
-	uint16_t _gpioPin;
-	_buttonState _statebut;
+	GPIO_TypeDef*   _gpioPort;
+	uint16_t 		_gpioPin;
+	_buttonState    _statebut;
 
 
 public:
 	Btn(GPIO_TypeDef* gpioPort, uint16_t gpioPin)
 	{
 		_gpioPort = gpioPort;
-		_gpioPin = gpioPin;
+		_gpioPin  = gpioPin;
 		_statebut = BUTTON_PULLUP;
 	}
-	_buttonState _state = BUTTON_PULLUP;
-	 //_buttonState getState(){return _buttonState;}
-
+	_buttonState _state = 	BUTTON_PULLUP;
 	_buttonState getState();
-	void setState(_buttonState _state);
-	int getPin(){return _statebut;}
+
+	void setState			(_buttonState _state);
+	int getPin()			{return _statebut;}
+
 
 };
 #endif /* INC_BTN_H_ */

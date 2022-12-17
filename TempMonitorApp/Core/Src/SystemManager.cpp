@@ -1,5 +1,5 @@
 /*
- * MonitorManager.cpp
+ * SystemManager.cpp
 
  */
 
@@ -28,14 +28,14 @@ extern  I2C_HandleTypeDef hi2c1;
 
 
 // Initialized parameters
-Btn button = 				Btn(SW1_GPIO_Port, SW1_Pin);
-Dht dht = 	 				Dht(DHT_GPIO_Port, DHT_Pin, &htim6);
-LED ledblue = 				LED(ledB_GPIO_Port, ledB_Pin);
-LED ledred = 				LED(ledR_GPIO_Port, ledR_Pin);
-BUZZER buzzer = 			BUZZER(&htim3);
-_RTC rtc = 					_RTC(&hi2c1,0xD0);
-FLASHCORE thresholdsFlash = FLASHCORE (THRESHOLDS_PAGE, 1);
-CliContainer container = 	CliContainer();
+Btn button = 					Btn(SW1_GPIO_Port, SW1_Pin);
+Dht dht = 	 					Dht(DHT_GPIO_Port, DHT_Pin, &htim6);
+LED ledblue = 					LED(ledB_GPIO_Port, ledB_Pin);
+LED ledred = 					LED(ledR_GPIO_Port, ledR_Pin);
+BUZZER buzzer = 				BUZZER(&htim3);
+_RTC rtc = 						_RTC(&hi2c1,0xD0);
+FLASHCORE thresholdsFlash = 	FLASHCORE (THRESHOLDS_PAGE, 1);
+CliContainer container = 		CliContainer();
 
 
 //variables for FatFs
@@ -43,6 +43,8 @@ FATFS 	FatFs; 	  //Fatfs handle
 FIL 	fil; 	//File handle
 FRESULT fres; //Result after operations
 char 	Buf[100];
+
+
 
 // Initialized SD card file
 void sdInit()
@@ -71,7 +73,7 @@ void systemManagerInit()
 }
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-		dht.Dht_onGpioInterrupt(GPIO_PIN_10);
+		dht.onGpioInterrupt(GPIO_PIN_10);
 
 		if(HAL_GPIO_ReadPin(SW1_GPIO_Port, SW1_Pin) == 0){
 			dht.setState(TEMP_NO_BUZZER);
@@ -94,13 +96,17 @@ extern "C" void StartcommTask(void *argument)
 		}
 		osThreadTerminate(osThreadGetId());
 }
+// counter which manages the write to the SD card
+int flashcounter = HAL_GetTick();
+
 // this task measure ever one second the temperature.
 extern "C" void StartDht(void *argument)
 {
+
 	while(1)
 	{
 		// The temperature reading failed
-		if(dht.Dht_read() != HAL_OK)
+		if(dht.read() != HAL_OK)
 		{
 			dht.setState(TEMP_ERROR);
 			printf("Error to read temperature\r\n");
@@ -115,24 +121,24 @@ extern "C" void StartDht(void *argument)
 			//thresholdsFlash.getCriticalThreshold()
 			if (dht.getTemp() >= thresholdsFlash.getCriticalThreshold()) {
 					dht.setState(TEMP_CRITICAL);
-					ledblue.Led_Off();
+					ledblue.Off();
 					button.setState(BUTTON_PULLUP);
-					ledred.Led_Blink();
+					ledred.Blink();
 					buzzer.buzzerStartPlay();
 			}
 			else if(dht.getTemp() >= thresholdsFlash.getWarningThreshold()){
 					dht.setState(TEMP_WARNING);
 					button.setState(BUTTON_PULLDOWN);
-					ledblue.Led_Off();
-					ledred.Led_On();
+					ledblue.Off();
+					ledred.On();
 					buzzer.buzzerStopPlay();
 			}
 			else {
 					dht.setState(TEMP_NORMAL);
 					button.setState(BUTTON_PULLDOWN);
 					buzzer.buzzerStopPlay();
-					ledblue.Led_Blink();
-					ledred.Led_Off();
+					ledblue.Blink();
+					ledred.Off();
 			}
 		}
 		osDelay(ONE_SECOND);
@@ -146,7 +152,7 @@ extern "C" void StartDht(void *argument)
 extern "C" void StartFlashTask(void *argument)
 {
 	for(;;){
-		DateTime * mytime = new DateTime;
+		_DateTime * mytime = new _DateTime;
 		if (dht.getState() == TEMP_CRITICAL){
 			sprintf(Buf,
 						"Date: %02d/%02d/%02d, Time: %02d:%02d:%02d, Temperature: %.2f, Critical event\n\r",
@@ -164,12 +170,15 @@ extern "C" void StartFlashTask(void *argument)
 						osDelay(10000);
 		}
 		else{
-			sprintf(Buf,
+			if(flashcounter == ONE_MINUTES){
+				sprintf(Buf,
 						"Date: %02d/%02d/%02d, Time: %02d:%02d:%02d, Temperature: %.2f, Normal Temperature\n\r",
 						mytime->day, mytime->month, mytime->year, mytime->hours,
 						mytime->min, mytime->sec, dht.getTemp());
 						rtc.writeToFileSD(Buf);
 						osDelay(10000);
+			}
+
 		}
 
 

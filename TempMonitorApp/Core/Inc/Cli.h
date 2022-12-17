@@ -6,8 +6,7 @@
 #ifndef INC_CLI_H_
 #define INC_CLI_H_
 
-#define COMMAND_ARR_SIZE 	10
-#define COMMAND_NAME_SIZE 	20
+
 
 #include "main.h"
 #include <stdio.h>
@@ -21,8 +20,10 @@
 #include "user_diskio.h"
 #include "integer.h"
 
-extern Dht 			dht;
-extern FLASHCORE 	thresholdsFlash;
+#define COMMAND_ARR_SIZE 	10
+#define COMMAND_NAME_SIZE 	20
+extern Dht 					dht;
+extern FLASHCORE 			thresholdsFlash;
 
 
 class Cli{
@@ -31,15 +32,15 @@ public:
 	virtual ~Cli(){}
 };
 
-class clicommand_entry {
-public:
+struct  _clicommand_entry
+{
 	const char * CommandName;
 	Cli* command;
 };
 
 class CliContainer{
 private:
-	clicommand_entry commands[20];
+	_clicommand_entry commands[20];
 	int funcounter = 0;
 public:
 	CliContainer(){}
@@ -63,66 +64,70 @@ public:
 	void initCLIcontainer();
 	void PrintCommand();
 };
-
-
 /////////////////////////////////////////////////////////////////////////////////
 //Led
 /////////////////////////////////////////////////////////////////////////////////
-
 class ledOn : public Cli{
 private:
 	LED * _led;
 public:
-	ledOn(LED * led){
+	ledOn(LED * led)
+	{
 		_led = led;
 	}
 	void doCommand(const char * param) override{
-		_led->Led_On();
+		_led->On();
 	}
 };
+
 class ledOff : public Cli{
 private:
 	LED * _led;
 public:
-	ledOff(LED * led){
+	ledOff(LED * led)
+	{
 		_led = led;
 	}
 	void doCommand(const char * param) override{
-		_led->Led_Off();
+		_led->Off();
 	}
 };
+
 class ledBlink : public Cli{
 private:
 	LED * _led;
 public:
-	ledBlink(LED * led){
+	ledBlink(LED * led)
+	{
 		_led = led;
 	}
 	void doCommand(const char * param) override{
-		_led->Led_Blink();
+		_led->Blink();
 	}
 };
+
 class ledSetDelay : public Cli{
 private:
 	LED * _led;
 public:
-	ledSetDelay(LED * led){
+	ledSetDelay(LED * led)
+	{
 		_led = led;
 	}
 	void doCommand(const char * param) override{
 		int _param = atoi(param);
-		_led->LED_delay(_param);
+		_led->Delay(_param);
 	}
 };
 /////////////////////////////////////////////////////////////////////////////
 //RTC
 //////////////////////////////////////////////////////////////////////////////
-
 class rtcstart : public Cli{
 private:
 	_RTC * _rtc;
 public:
-	rtcstart(_RTC * rtc){
+	rtcstart(_RTC * rtc)
+	{
 		_rtc = rtc;
 	}
 	void doCommand(const char * param) override{
@@ -130,11 +135,13 @@ public:
 		_rtc->rtcStart();
 	}
 };
+
 class rtcgettime : public Cli{
 private:
 	_RTC * _rtc;
 public:
-	rtcgettime(_RTC * rtc){
+	rtcgettime(_RTC * rtc)
+	{
 		_rtc = rtc;
 	}
 	void doCommand(const char * param) override{
@@ -143,20 +150,22 @@ public:
 
 	}
 };
+
 class rtcsettime : public Cli{
 private:
 	_RTC * _rtc;
 public:
-	rtcsettime(_RTC * rtc){
+	rtcsettime(_RTC * rtc)
+	{
 		_rtc = rtc;
 	}
 	void doCommand(const char * param) override{
 
-		char * token;
-		char s[3] = ":";
-		char temp[50];
+		char * 		token;
+		char 		s[3] = ":";
+		char 		temp[50];
 		strcpy(temp,param);
-		DateTime tempdate;
+		_DateTime 	tempdate;
 
 		token = strtok(temp, s);
 		tempdate.hours = atoi(token);
@@ -186,11 +195,13 @@ public:
 		_rtc->rtcSetTime(&tempdate);
 	}
 };
+
 class rtcstop : public Cli{
 private:
 	_RTC * _rtc;
 public:
-	rtcstop(_RTC * rtc){
+	rtcstop(_RTC * rtc)
+	{
 		_rtc = rtc;
 	}
 	void doCommand(const char * param) override{
@@ -198,11 +209,13 @@ public:
 		_rtc->rtcStop();
 	}
 };
+
 class readSDCard : public Cli{
 private:
 	_RTC * _rtc;
 public:
-	readSDCard(_RTC * rtc){
+	readSDCard(_RTC * rtc)
+	{
 		_rtc = rtc;
 	}
 	void doCommand(const char * param) override{
@@ -220,7 +233,8 @@ class buzzeron : public Cli{
 private:
 	BUZZER * _buzzer;
 public:
-	buzzeron(BUZZER * buzzer){
+	buzzeron(BUZZER * buzzer)
+	{
 		_buzzer = buzzer;
 	}
 	void doCommand(const char * param) override{
@@ -232,7 +246,8 @@ class buzzeroff : public Cli{
 private:
 	BUZZER * _buzzer;
 public:
-	buzzeroff(BUZZER * buzzer){
+	buzzeroff(BUZZER * buzzer)
+	{
 		_buzzer = buzzer;
 	}
 	void doCommand(const char * param) override{
@@ -246,7 +261,8 @@ class WarningTempThreshold: public Cli {
 private:
 	double _warningTempThreshold;
 public:
-	WarningTempThreshold(){
+	WarningTempThreshold()
+	{
 		_warningTempThreshold = 50;
 	}
 
@@ -262,7 +278,8 @@ class CriticalTempThreshold: public Cli {
 private:
 	double _criticalTempThreshold;
 public:
-	CriticalTempThreshold(){
+	CriticalTempThreshold()
+	{
 		_criticalTempThreshold = 50;
 	}
 
@@ -272,8 +289,8 @@ public:
 		thresholdsFlash.setCriticalThreshold(_criticalTempThreshold);
 	}
 };
-// print warning / critical data
 
+// print warning / critical data
 class GetTempThresholdInfo : public Cli
 {
 private:
@@ -305,7 +322,8 @@ public:
 private:
 	FLASHCORE* _flash;
 public:
-	PrintSDData(){
+	PrintSDData()
+	{
 	}
 	void doCommand(const char* param) override{
 		_flash->SDData();
@@ -316,8 +334,8 @@ class RemoveFileSDCard : public Cli {
 private:
 	 FLASHCORE* _flash;
 public:
-	 RemoveFileSDCard(){
-
+	 RemoveFileSDCard()
+	 {
 	 }
 	 void doCommand(const char* param) override{
 		 _flash->removeFileFromSD();
@@ -326,7 +344,6 @@ public:
 
 private:
 };
-
 //////////////////////////////////////////////////////////////////////////
 // help
 /////////////////////////////////////////////////////////////////////////
@@ -334,13 +351,11 @@ class helpCMD : public Cli {
 private:
 	CliContainer* commands;
 public:
-	helpCMD(){
-
+	helpCMD()
+	{
 	}
 	void doCommand(const char* param) override{
 		commands->PrintCommand();
-
-		 }
+	}
 };
-
 #endif /* INC_CLI_H_ */

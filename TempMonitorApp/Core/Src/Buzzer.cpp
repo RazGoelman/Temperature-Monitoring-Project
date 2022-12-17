@@ -1,8 +1,6 @@
 /*
  * Buzzer.cpp
- *
- *  Created on: Nov 17, 2022
- *      Author: student
+
  */
 
 #include "main.h"
@@ -10,12 +8,12 @@
 
 extern TIM_HandleTypeDef htim3;
 
-int count = 0;
-int frame = 0;
+int count	= 0;
+int frame 	= 0;
 
 BUZZER::BUZZER(TIM_HandleTypeDef *htim)
 {
-	htim = htim;
+	htim 	= htim;
 
 }
 void BUZZER::buzzerStartPlay()

@@ -17,21 +17,21 @@
 
 struct THRESHOLDS
 {
-	uint16_t _warning;
-	uint16_t _critical;
-	uint16_t _criticalTempThreshold;
-	uint16_t _warningTempThreshold;
+						uint16_t _warning;
+						uint16_t _critical;
+						uint16_t _criticalTempThreshold;
+						uint16_t _warningTempThreshold;
 };
 
 class FLASHCORE
 {
 private:
-	uint32_t _bank;
-	uint32_t _pageAddr;
-	uint32_t _nbPages;
-	uint32_t _page;
-	uint32_t _typeProgram;
-	THRESHOLDS _thresholds;
+						uint32_t _bank;
+						uint32_t _pageAddr;
+						uint32_t _nbPages;
+						uint32_t _page;
+						uint32_t _typeProgram;
+						THRESHOLDS _thresholds;
 public:
 	FLASHCORE(uint32_t pageAddr, uint32_t nbPage)
 	{
@@ -43,11 +43,14 @@ public:
 	}
 	HAL_StatusTypeDef erasePage();
 	HAL_StatusTypeDef writeToPage(void* data, int dataSize);
+
 	uint32_t getBank()			{return _bank;}
 	uint32_t getPageAddr()		{return _pageAddr;}
 	uint32_t getNbPages()		{return _nbPages;}
 	uint32_t getTypeProgram()	{return _typeProgram;}
-	int getWarningThreshold();
+
+
+	int getWarningThreshold()	{return _thresholds._warning;}
 	int getCriticalThreshold();
 	void setWarningThreshold(int warning);
 	void setCriticalThreshold(int critical);

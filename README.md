@@ -5,6 +5,8 @@
 **project Goal:**
 
    Application of temperature monitoring sensor, the project is implemented by FreeRTOS using C++ 
+   
+ **Attached project goal file**  
 
 **Interface for Project:**
 

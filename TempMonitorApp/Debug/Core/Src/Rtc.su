@@ -5,6 +5,7 @@
 ../Core/Src/Rtc.cpp:73:12:int bcdToInt(uint8_t)	16	static
 ../Core/Src/Rtc.cpp:77:16:uint8_t intToBcd(int, int, int)	24	static
 ../Core/Src/Rtc.cpp:85:6:void _RTC::rtcGetTime()	64	static
-../Core/Src/Rtc.cpp:105:6:void _RTC::rtcSetTime(_DateTime*)	40	static
-../Core/Src/Rtc.cpp:125:6:void _RTC::writeToFileSD(const char*)	24	static
-../Core/Src/Rtc.cpp:144:6:void _RTC::readFileFromSD()	24	static
+../Core/Src/Rtc.cpp:105:6:void _RTC::rtcSetTime(DateTime*)	40	static
+../Core/Src/Rtc.cpp:125:6:void _RTC::writeToThresholdFileSD(const char*)	24	static
+../Core/Src/Rtc.cpp:145:6:void _RTC::writeToNormalFileSD(const char*)	24	static
+../Core/Src/Rtc.cpp:163:6:void _RTC::readThresholdFileFromSD()	24	static

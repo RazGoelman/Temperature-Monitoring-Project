@@ -24,7 +24,7 @@ typedef enum _FRAME{
 class BUZZER{
 
 private:
-	TIM_HandleTypeDef *		htim;
+	TIM_HandleTypeDef *		_htim;
 
 public:
 

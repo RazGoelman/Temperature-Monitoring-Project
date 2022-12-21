@@ -165,7 +165,7 @@ public:
 		char 		s[3] = ":";
 		char 		temp[50];
 		strcpy(temp,param);
-		_DateTime 	tempdate;
+		DateTime 	tempdate;
 
 		token = strtok(temp, s);
 		tempdate.hours = atoi(token);
@@ -220,7 +220,7 @@ public:
 	}
 	void doCommand(const char * param) override{
 
-		_rtc->readFileFromSD();
+		_rtc->readThresholdFileFromSD();
 	}
 
 private:

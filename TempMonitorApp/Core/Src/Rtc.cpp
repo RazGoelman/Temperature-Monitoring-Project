@@ -85,7 +85,7 @@ static uint8_t intToBcd(int value, int minVal, int maxVal)
 void _RTC::rtcGetTime()
 {
 	uint8_t buffer[RTC_DATE_TIME_SIZE];
-	_DateTime * mytime = new _DateTime;
+	DateTime * mytime = new DateTime;
 	if(HAL_I2C_Mem_Read(_hi2c, _devAddr, 0, 1, buffer, RTC_DATE_TIME_SIZE, 0xFF) == HAL_OK){
 	}
 	else{
@@ -102,7 +102,7 @@ void _RTC::rtcGetTime()
 	mytime->year 							= bcdToInt(buffer[6]);
 	printf("Date: %02d:%02d:%02d  %02d %02d/%02d/%02d \r\n ",mytime->hours,mytime->min,mytime->sec,mytime->weekDay,mytime->day,mytime->month,mytime->year);
 }
-void _RTC::rtcSetTime(_DateTime * _datetime)
+void _RTC::rtcSetTime(DateTime * _datetime)
 {
 	dateTime 								= _datetime;
 	uint8_t buffer[RTC_DATE_TIME_SIZE];
@@ -122,10 +122,10 @@ void _RTC::rtcSetTime(_DateTime * _datetime)
 		printf("Write FAILED\r\n");
 	}
 }
-void _RTC::writeToFileSD(const char * data)
+void _RTC::writeToThresholdFileSD(const char * data)
 {
 	//Now let's try and write a file "write.txt"
-	fres = f_open(&fil, "logger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	fres = f_open(&fil, "ThresholdLogger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 	if(fres != FR_OK)
 	{
 		printf("f_open error (%i)\r\n", fres);
@@ -141,9 +141,28 @@ void _RTC::writeToFileSD(const char * data)
 	}
 	f_close(&fil);
 }
-void _RTC::readFileFromSD()
+
+void _RTC::writeToNormalFileSD(const char * data)
 {
-	fres = f_open(&fil, "logger.txt", FA_READ | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	fres = f_open(&fil, "NormalLogger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	if(fres != FR_OK)
+	{
+		printf("f_open error (%i)\r\n", fres);
+	}
+	// write temperature
+	strcpy((char*)readBuf, data);
+	UINT bytesWrote;
+	fres = f_write(&fil, (char*)readBuf,strlen(data), &bytesWrote);
+
+	if(fres != FR_OK) {
+
+		printf("f_write error (%i)\r\n", fres);
+	}
+	f_close(&fil);
+}
+void _RTC::readThresholdFileFromSD()
+{
+	fres = f_open(&fil, "ThresholdLogger.txt", FA_READ | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 	if(fres != FR_OK)
 	{
 		printf("f_open error (%i)\r\n", fres);

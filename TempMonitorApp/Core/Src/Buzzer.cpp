@@ -13,7 +13,7 @@ int frame 	= 0;
 
 BUZZER::BUZZER(TIM_HandleTypeDef *htim)
 {
-	htim 	= htim;
+	_htim 	= htim;
 
 }
 void BUZZER::buzzerStartPlay()

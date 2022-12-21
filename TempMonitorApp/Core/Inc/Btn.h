@@ -28,11 +28,11 @@ public:
 		_gpioPin  = gpioPin;
 		_statebut = BUTTON_PULLUP;
 	}
-	_buttonState _state = 	BUTTON_PULLUP;
-	_buttonState getState();
+	_buttonState _state = 				BUTTON_PULLUP;
+	_buttonState getState()             {return _statebut;}
 
-	void setState			(_buttonState _state);
-	int getPin()			{return _statebut;}
+	void setState(_buttonState _state)  { _statebut = _state;};
+	int getPin()			            {return _statebut;}
 
 
 };

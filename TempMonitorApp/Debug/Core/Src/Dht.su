@@ -3,5 +3,5 @@
 ../Core/Src/Dht.cpp:41:6:void Dht::setGpioInput()	40	static
 ../Core/Src/Dht.cpp:54:6:void Dht::setGpioExti()	40	static
 ../Core/Src/Dht.cpp:65:5:int Dht::read()	40	static
-../Core/Src/Dht.cpp:128:6:void Dht::setState(_alartState)	16	static
+../Core/Src/Dht.cpp:128:6:void Dht::setState(alartState)	16	static
 ../Core/Src/Dht.cpp:133:6:void Dht::onGpioInterrupt(uint16_t)	16	static

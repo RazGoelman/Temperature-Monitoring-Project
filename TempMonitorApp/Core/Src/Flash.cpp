@@ -64,12 +64,7 @@ HAL_StatusTypeDef FLASHCORE :: writeToPage(void* data, int dataSize)
 	printf("%d\r\n", status);
 	return status;
 }
-//get warning threshold
-//int FLASHCORE :: getWarningThreshold()
-//{
-//	return _thresholds._warning;
-//}
-//get critical threshold
+
 int FLASHCORE :: getCriticalThreshold()
 {
 	return _thresholds._critical;

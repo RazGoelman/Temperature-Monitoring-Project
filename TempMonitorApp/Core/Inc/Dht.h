@@ -10,7 +10,7 @@
 
 
 
-enum _alartState{
+enum alartState{
 							TEMP_ERROR,
 							TEMP_NORMAL,
 							TEMP_WARNING,
@@ -25,7 +25,7 @@ private:
 	TIM_HandleTypeDef * 	_timer;
 	uint8_t 				_data[5];
 	double 					_temperature;
-	_alartState 			_dhtstate;
+	alartState 				_dhtstate;
 	int 					_counter;
 	int 					_maxCounter;
 
@@ -47,10 +47,10 @@ public:
 	void setGpioInput();
 	void setGpioExti();
 
-	void setState			(_alartState _state);
+	void setState			(alartState _state);
 	int read();
 	double getTemp()		{return _temperature;}
-	_alartState getState()	{return _dhtstate;}
+	alartState getState()	{return _dhtstate;}
 
 	void onGpioInterrupt(uint16_t pin);
 

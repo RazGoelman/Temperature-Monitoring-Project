@@ -125,7 +125,7 @@ int Dht :: read()
 	return HAL_OK;
 }
 
-void Dht :: setState(_alartState _state)
+void Dht :: setState(alartState _state)
 {
 	_dhtstate = _state;
 }

@@ -1,18 +1,20 @@
 /opt/st/stm32cubeide_1.11.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.linux64_1.0.100.202210260954/tools/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 ../Core/Inc/Btn.h:25:2:Btn::Btn(GPIO_TypeDef*, uint16_t)	24	static
+../Core/Inc/Btn.h:34:7:void Btn::setState(_buttonState)	16	static
 ../Core/Inc/Dht.h:34:2:Dht::Dht(GPIO_TypeDef*, uint16_t, TIM_HandleTypeDef*)	24	static
 ../Core/Inc/Dht.h:52:9:double Dht::getTemp()	16	static
-../Core/Inc/Dht.h:53:14:_alartState Dht::getState()	16	static
+../Core/Inc/Dht.h:53:13:alartState Dht::getState()	16	static
 ../Core/Inc/Flash.h:36:2:FLASHCORE::FLASHCORE(uint32_t, uint32_t)	24	static
 ../Core/Inc/Flash.h:53:6:int FLASHCORE::getWarningThreshold()	16	static
 ../Core/Inc/Cli.h:46:2:CliContainer::CliContainer()	16	static
 ../Core/Inc/Cli.h:47:2:CliContainer::~CliContainer()	16	static
+../Core/Inc/commTask.h:17:2:CommTASK::CommTASK()	16	static
 ../Core/Src/SystemManager.cpp:50:6:void sdInit()	8	static
 ../Core/Src/SystemManager.cpp:64:6:void systemManagerInit()	8	static
 ../Core/Src/SystemManager.cpp:74:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
-../Core/Src/SystemManager.cpp:85:17:void StartcommTask(void*)	16	static
-../Core/Src/SystemManager.cpp:103:17:void StartDht(void*)	32	static
-../Core/Src/SystemManager.cpp:152:17:void StartFlashTask(void*)	72	static
-../Core/Src/SystemManager.cpp:188:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/Src/SystemManager.cpp:188:1:cpp)	8	static
-../Core/Src/SystemManager.cpp:188:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:87:17:void StartcommTask(void*)	16	static
+../Core/Src/SystemManager.cpp:105:17:void StartDht(void*)	40	static
+../Core/Src/SystemManager.cpp:160:17:void StartFlashTask(void*)	72	static
+../Core/Src/SystemManager.cpp:192:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/SystemManager.cpp:192:1:cpp)	8	static
+../Core/Src/SystemManager.cpp:192:1:cpp)	8	static

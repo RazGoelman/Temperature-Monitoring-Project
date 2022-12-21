@@ -15,7 +15,6 @@ C_SRCS += \
 ../Core/Src/system_stm32l4xx.c 
 
 CPP_SRCS += \
-../Core/Src/Btn.cpp \
 ../Core/Src/Buzzer.cpp \
 ../Core/Src/Cli.cpp \
 ../Core/Src/Dht.cpp \
@@ -36,7 +35,6 @@ C_DEPS += \
 ./Core/Src/system_stm32l4xx.d 
 
 OBJS += \
-./Core/Src/Btn.o \
 ./Core/Src/Buzzer.o \
 ./Core/Src/Cli.o \
 ./Core/Src/Dht.o \
@@ -55,7 +53,6 @@ OBJS += \
 ./Core/Src/system_stm32l4xx.o 
 
 CPP_DEPS += \
-./Core/Src/Btn.d \
 ./Core/Src/Buzzer.d \
 ./Core/Src/Cli.d \
 ./Core/Src/Dht.d \
@@ -75,7 +72,7 @@ Core/Src/%.o Core/Src/%.su: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/Btn.d ./Core/Src/Btn.o ./Core/Src/Btn.su ./Core/Src/Buzzer.d ./Core/Src/Buzzer.o ./Core/Src/Buzzer.su ./Core/Src/Cli.d ./Core/Src/Cli.o ./Core/Src/Cli.su ./Core/Src/Dht.d ./Core/Src/Dht.o ./Core/Src/Dht.su ./Core/Src/Flash.d ./Core/Src/Flash.o ./Core/Src/Flash.su ./Core/Src/Led.d ./Core/Src/Led.o ./Core/Src/Led.su ./Core/Src/Rtc.d ./Core/Src/Rtc.o ./Core/Src/Rtc.su ./Core/Src/SystemManager.d ./Core/Src/SystemManager.o ./Core/Src/SystemManager.su ./Core/Src/commTask.d ./Core/Src/commTask.o ./Core/Src/commTask.su ./Core/Src/freertos.d ./Core/Src/freertos.o ./Core/Src/freertos.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_msp.su ./Core/Src/stm32l4xx_hal_timebase_tim.d ./Core/Src/stm32l4xx_hal_timebase_tim.o ./Core/Src/stm32l4xx_hal_timebase_tim.su ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/stm32l4xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o ./Core/Src/system_stm32l4xx.su
+	-$(RM) ./Core/Src/Buzzer.d ./Core/Src/Buzzer.o ./Core/Src/Buzzer.su ./Core/Src/Cli.d ./Core/Src/Cli.o ./Core/Src/Cli.su ./Core/Src/Dht.d ./Core/Src/Dht.o ./Core/Src/Dht.su ./Core/Src/Flash.d ./Core/Src/Flash.o ./Core/Src/Flash.su ./Core/Src/Led.d ./Core/Src/Led.o ./Core/Src/Led.su ./Core/Src/Rtc.d ./Core/Src/Rtc.o ./Core/Src/Rtc.su ./Core/Src/SystemManager.d ./Core/Src/SystemManager.o ./Core/Src/SystemManager.su ./Core/Src/commTask.d ./Core/Src/commTask.o ./Core/Src/commTask.su ./Core/Src/freertos.d ./Core/Src/freertos.o ./Core/Src/freertos.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_msp.su ./Core/Src/stm32l4xx_hal_timebase_tim.d ./Core/Src/stm32l4xx_hal_timebase_tim.o ./Core/Src/stm32l4xx_hal_timebase_tim.su ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/stm32l4xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o ./Core/Src/system_stm32l4xx.su
 
 .PHONY: clean-Core-2f-Src
 

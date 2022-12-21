@@ -8,7 +8,7 @@
 
 #include "main.h"
 
-struct _DateTime
+struct DateTime
 {
 							int sec;
 							int min;
@@ -23,7 +23,7 @@ class _RTC{
 private :
 	I2C_HandleTypeDef * 	_hi2c;
 	uint8_t 				_devAddr;
-	_DateTime * 			dateTime;
+	DateTime * 			dateTime;
 
 public:
 
@@ -33,9 +33,10 @@ public:
 	void rtcStop();
 	int rtcIsRunning();
 	void rtcGetTime();
-	void rtcSetTime			(_DateTime * _datetime);
-	void writeToFileSD		(const char * data);
-	void readFileFromSD();
+	void rtcSetTime					(DateTime * _datetime);
+	void writeToThresholdFileSD		(const char * data);
+	void writeToNormalFileSD		(const char * data);
+	void readThresholdFileFromSD();
 };
 
 

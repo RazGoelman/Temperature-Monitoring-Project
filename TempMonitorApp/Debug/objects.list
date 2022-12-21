@@ -1,4 +1,3 @@
-"./Core/Src/Btn.o"
 "./Core/Src/Buzzer.o"
 "./Core/Src/Cli.o"
 "./Core/Src/Dht.o"

@@ -1,7 +1,7 @@
 ../Core/Src/Flash.cpp:24:19:HAL_StatusTypeDef FLASHCORE::erasePage()	40	static
 ../Core/Src/Flash.cpp:48:19:HAL_StatusTypeDef FLASHCORE::writeToPage(void*, int)	40	static
-../Core/Src/Flash.cpp:73:5:int FLASHCORE::getCriticalThreshold()	16	static
-../Core/Src/Flash.cpp:78:6:void FLASHCORE::setWarningThreshold(int)	24	static
-../Core/Src/Flash.cpp:99:6:void FLASHCORE::setCriticalThreshold(int)	24	static
-../Core/Src/Flash.cpp:120:6:void FLASHCORE::SDData()	32	static
-../Core/Src/Flash.cpp:151:6:void FLASHCORE::removeFileFromSD()	16	static
+../Core/Src/Flash.cpp:68:5:int FLASHCORE::getCriticalThreshold()	16	static
+../Core/Src/Flash.cpp:73:6:void FLASHCORE::setWarningThreshold(int)	24	static
+../Core/Src/Flash.cpp:94:6:void FLASHCORE::setCriticalThreshold(int)	24	static
+../Core/Src/Flash.cpp:115:6:void FLASHCORE::SDData()	32	static
+../Core/Src/Flash.cpp:146:6:void FLASHCORE::removeFileFromSD()	16	static

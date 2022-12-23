@@ -125,10 +125,10 @@ void _RTC::rtcSetTime(DateTime * _datetime)
 void _RTC::writeToThresholdFileSD(const char * data)
 {
 	//Now let's try and write a file "write.txt"
-	fres = f_open(&fil, "ThresholdLogger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	fres = f_open(&fil, "logger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 	if(fres != FR_OK)
 	{
-		printf("f_open error (%i)\r\n", fres);
+		printf("f_open error logger.txt writeToThresholdFileSD (%i)\r\n", fres);
 	}
 	// write temperature
 	strcpy((char*)readBuf, data);
@@ -137,17 +137,17 @@ void _RTC::writeToThresholdFileSD(const char * data)
 
 	if(fres != FR_OK) {
 
-		printf("f_write error (%i)\r\n", fres);
+		printf("f_write error logger.txt writeToThresholdFileSD (%i)\r\n", fres);
 	}
 	f_close(&fil);
 }
 
 void _RTC::writeToNormalFileSD(const char * data)
 {
-	fres = f_open(&fil, "NormalLogger.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	fres = f_open(&fil, "logger2.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 	if(fres != FR_OK)
 	{
-		printf("f_open error (%i)\r\n", fres);
+		printf("f_open logger2.txt error writeToNormalFileSD (%i)\r\n", fres);
 	}
 	// write temperature
 	strcpy((char*)readBuf, data);
@@ -156,22 +156,38 @@ void _RTC::writeToNormalFileSD(const char * data)
 
 	if(fres != FR_OK) {
 
-		printf("f_write error (%i)\r\n", fres);
-	}
-	f_close(&fil);
-}
-void _RTC::readThresholdFileFromSD()
-{
-	fres = f_open(&fil, "ThresholdLogger.txt", FA_READ | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
-	if(fres != FR_OK)
-	{
-		printf("f_open error (%i)\r\n", fres);
-	}
-	TCHAR* path = f_gets((TCHAR*)readBuf, 100, &fil);
-	if (path == 0)
-	{
-		printf("f_gets error (%i)\r\n", fres);
+		printf("f_write logger2.txt error writeToNormalFileSD (%i)\r\n", fres);
 	}
 	f_close(&fil);
 }
 
+void _RTC::readThresholdFileFromSD()
+{
+	fres = f_open(&fil, "logger.txt", FA_READ | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	if(fres != FR_OK)
+	{
+		printf("f_open error logger.txt readThresholdFileFromSD (%i)\r\n", fres);
+	}
+	TCHAR* path = f_gets((TCHAR*)readBuf, 100, &fil);
+	if (path == 0)
+	{
+		printf("f_gets error logger.txt readThresholdFileFromSD (%i)\r\n", fres);
+	}
+	f_close(&fil);
+}
+
+
+void _RTC::readNormalFileFromSD()
+{
+	fres = f_open(&fil, "logger2.txt", FA_READ | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	if(fres != FR_OK)
+	{
+		printf("f_open error logger2.txt readThresholdFileFromSD (%i)\r\n", fres);
+	}
+	TCHAR* path = f_gets((TCHAR*)readBuf, 100, &fil);
+	if (path == 0)
+	{
+		printf("f_gets error logger2.txt readThresholdFileFromSD (%i)\r\n", fres);
+	}
+	f_close(&fil);
+}

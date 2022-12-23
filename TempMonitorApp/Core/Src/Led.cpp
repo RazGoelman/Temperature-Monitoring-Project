@@ -11,7 +11,7 @@ LED::LED(GPIO_TypeDef* GPIOx,uint16_t GPIO_Pin):
 		GPIOx(GPIOx),GPIO_Pin(GPIO_Pin)
 {
 	blinkcount  = 0;
-	delay 		= 50;
+	delay 		= 200;
 }
 
 void LED::On()

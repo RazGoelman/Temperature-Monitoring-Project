@@ -13,44 +13,48 @@
 ../Core/Inc/Cli.h:147:7:virtual void rtcgettime::doCommand(const char*)	16	static
 ../Core/Inc/Cli.h:158:2:rtcsettime::rtcsettime(_RTC*)	16	static
 ../Core/Inc/Cli.h:162:7:virtual void rtcsettime::doCommand(const char*)	104	static
-../Core/Inc/Cli.h:217:2:readSDCard::readSDCard(_RTC*)	16	static
-../Core/Inc/Cli.h:221:7:virtual void readSDCard::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:236:2:buzzeron::buzzeron(BUZZER*)	16	static
-../Core/Inc/Cli.h:240:7:virtual void buzzeron::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:249:2:buzzeroff::buzzeroff(BUZZER*)	16	static
-../Core/Inc/Cli.h:253:7:virtual void buzzeroff::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:264:2:WarningTempThreshold::WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:269:7:virtual void WarningTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:281:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:286:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:299:2:GetTempThresholdInfo::GetTempThresholdInfo()	16	static
-../Core/Inc/Cli.h:302:7:virtual void GetTempThresholdInfo::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:325:2:PrintSDData::PrintSDData()	16	static
-../Core/Inc/Cli.h:328:7:virtual void PrintSDData::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:337:3:RemoveFileSDCard::RemoveFileSDCard()	16	static
-../Core/Inc/Cli.h:340:8:virtual void RemoveFileSDCard::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:354:2:helpCMD::helpCMD()	16	static
-../Core/Inc/Cli.h:357:7:virtual void helpCMD::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:217:2:readThresholdSDCard::readThresholdSDCard(_RTC*)	16	static
+../Core/Inc/Cli.h:221:7:virtual void readThresholdSDCard::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:233:2:readNormalSDCard::readNormalSDCard(_RTC*)	16	static
+../Core/Inc/Cli.h:237:7:virtual void readNormalSDCard::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:252:2:buzzeron::buzzeron(BUZZER*)	16	static
+../Core/Inc/Cli.h:256:7:virtual void buzzeron::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:265:2:buzzeroff::buzzeroff(BUZZER*)	16	static
+../Core/Inc/Cli.h:269:7:virtual void buzzeroff::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:280:2:WarningTempThreshold::WarningTempThreshold()	16	static
+../Core/Inc/Cli.h:285:7:virtual void WarningTempThreshold::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:297:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:302:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:315:2:GetTempThresholdInfo::GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:318:7:virtual void GetTempThresholdInfo::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:341:2:PrintThresholdData::PrintThresholdData()	16	static
+../Core/Inc/Cli.h:344:7:virtual void PrintThresholdData::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:353:3:RemoveThresholdFileSDCard::RemoveThresholdFileSDCard()	16	static
+../Core/Inc/Cli.h:356:8:virtual void RemoveThresholdFileSDCard::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:370:2:helpCMD::helpCMD()	16	static
+../Core/Inc/Cli.h:373:7:virtual void helpCMD::doCommand(const char*)	16	static
 ../Core/Src/Cli.cpp:27:6:void CliContainer::PrintCommand()	24	static
 ../Core/Src/Cli.cpp:38:6:void CliContainer::initCLIcontainer()	24	static
-../Core/Inc/Cli.h:350:7:helpCMD::~helpCMD()	16	static
-../Core/Inc/Cli.h:350:7:virtual helpCMD::~helpCMD()	16	static
-../Core/Inc/Cli.h:333:7:RemoveFileSDCard::~RemoveFileSDCard()	16	static
-../Core/Inc/Cli.h:333:7:virtual RemoveFileSDCard::~RemoveFileSDCard()	16	static
-../Core/Inc/Cli.h:321:8:PrintSDData::~PrintSDData()	16	static
-../Core/Inc/Cli.h:321:8:virtual PrintSDData::~PrintSDData()	16	static
-../Core/Inc/Cli.h:294:7:GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
-../Core/Inc/Cli.h:294:7:virtual GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
-../Core/Inc/Cli.h:277:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:277:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:260:7:WarningTempThreshold::~WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:260:7:virtual WarningTempThreshold::~WarningTempThreshold()	16	static
-../Core/Inc/Cli.h:245:7:buzzeroff::~buzzeroff()	16	static
-../Core/Inc/Cli.h:245:7:virtual buzzeroff::~buzzeroff()	16	static
-../Core/Inc/Cli.h:232:7:buzzeron::~buzzeron()	16	static
-../Core/Inc/Cli.h:232:7:virtual buzzeron::~buzzeron()	16	static
-../Core/Inc/Cli.h:213:7:readSDCard::~readSDCard()	16	static
-../Core/Inc/Cli.h:213:7:virtual readSDCard::~readSDCard()	16	static
+../Core/Inc/Cli.h:366:7:helpCMD::~helpCMD()	16	static
+../Core/Inc/Cli.h:366:7:virtual helpCMD::~helpCMD()	16	static
+../Core/Inc/Cli.h:349:7:RemoveThresholdFileSDCard::~RemoveThresholdFileSDCard()	16	static
+../Core/Inc/Cli.h:349:7:virtual RemoveThresholdFileSDCard::~RemoveThresholdFileSDCard()	16	static
+../Core/Inc/Cli.h:337:8:PrintThresholdData::~PrintThresholdData()	16	static
+../Core/Inc/Cli.h:337:8:virtual PrintThresholdData::~PrintThresholdData()	16	static
+../Core/Inc/Cli.h:310:7:GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:310:7:virtual GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:293:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:293:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:276:7:WarningTempThreshold::~WarningTempThreshold()	16	static
+../Core/Inc/Cli.h:276:7:virtual WarningTempThreshold::~WarningTempThreshold()	16	static
+../Core/Inc/Cli.h:261:7:buzzeroff::~buzzeroff()	16	static
+../Core/Inc/Cli.h:261:7:virtual buzzeroff::~buzzeroff()	16	static
+../Core/Inc/Cli.h:248:7:buzzeron::~buzzeron()	16	static
+../Core/Inc/Cli.h:248:7:virtual buzzeron::~buzzeron()	16	static
+../Core/Inc/Cli.h:229:7:readNormalSDCard::~readNormalSDCard()	16	static
+../Core/Inc/Cli.h:229:7:virtual readNormalSDCard::~readNormalSDCard()	16	static
+../Core/Inc/Cli.h:213:7:readThresholdSDCard::~readThresholdSDCard()	16	static
+../Core/Inc/Cli.h:213:7:virtual readThresholdSDCard::~readThresholdSDCard()	16	static
 ../Core/Inc/Cli.h:154:7:rtcsettime::~rtcsettime()	16	static
 ../Core/Inc/Cli.h:154:7:virtual rtcsettime::~rtcsettime()	16	static
 ../Core/Inc/Cli.h:139:7:rtcgettime::~rtcgettime()	16	static

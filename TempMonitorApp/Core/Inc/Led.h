@@ -6,7 +6,7 @@
 #ifndef INC_LED_H_
 #define INC_LED_H_
 
-#define DEFAULT_PERIOD 		50
+#define DEFAULT_PERIOD 		200
 
 #include "main.h"
 

@@ -38,32 +38,33 @@ void CliContainer::PrintCommand()
 void CliContainer::initCLIcontainer(){
 
 	//set / get time to the RTC
-	container.RegisterCommand("set-date-time",		new rtcsettime(&rtc));
-	container.RegisterCommand("get-date-time",		new rtcgettime(&rtc));
+	container.RegisterCommand("set date time",			new rtcsettime(&rtc));
+	container.RegisterCommand("get date time",			new rtcgettime(&rtc));
 
 	//set warning / critical, threshold temperature
-	container.RegisterCommand("set-warning", 		new WarningTempThreshold());
-	container.RegisterCommand("set-critical", 		new CriticalTempThreshold());
-	container.RegisterCommand("get-threshold-info", new GetTempThresholdInfo());
+	container.RegisterCommand("set warning", 			new WarningTempThreshold());
+	container.RegisterCommand("set critical", 			new CriticalTempThreshold());
+	container.RegisterCommand("get threshold info", 	new GetTempThresholdInfo());
 
 	//get some statistics from the SD card
-	container.RegisterCommand("get-sd-data", 		new PrintSDData());
+	container.RegisterCommand("get Threshold data", 	new PrintThresholdData());
 	//print SD data to the screen
-	container.RegisterCommand("read-sd-data", 		new readSDCard(&rtc));
+	container.RegisterCommand("read Threshold data",	new readThresholdSDCard(&rtc));
+	container.RegisterCommand("read Normal data", 		new readNormalSDCard(&rtc));
 
-	//Remove file from SD card
-	container.RegisterCommand("clear-file", 		new RemoveFileSDCard());
+	//Remove Threshold file from SD card
+	container.RegisterCommand("clear Threshold file",	new RemoveThresholdFileSDCard());
 
 	// switch on / off led
-	container.RegisterCommand("led-on",				new ledOn(&ledblue));
-	container.RegisterCommand("led-off",			new ledOff(&ledblue));
-	container.RegisterCommand("led-blink",			new ledBlink(&ledblue));
+	container.RegisterCommand("led-on",					new ledOn(&ledblue));
+	container.RegisterCommand("led-off",				new ledOff(&ledblue));
+	container.RegisterCommand("led-blink",				new ledBlink(&ledblue));
 
 	//play / stop analog buzzer
-	container.RegisterCommand("play-buzzer",		new buzzeron(&buzzer));
-	container.RegisterCommand("stop-buzzer",		new buzzeroff(&buzzer));
+	container.RegisterCommand("play-buzzer",			new buzzeron(&buzzer));
+	container.RegisterCommand("stop-buzzer",			new buzzeroff(&buzzer));
 	// help command to see all the command line options
-	container.RegisterCommand("help", 				new helpCMD());
+	container.RegisterCommand("help", 					new helpCMD());
 
 
 }

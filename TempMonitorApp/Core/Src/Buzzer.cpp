@@ -8,8 +8,6 @@
 
 extern TIM_HandleTypeDef htim3;
 
-int count	= 0;
-int frame 	= 0;
 
 BUZZER::BUZZER(TIM_HandleTypeDef *htim)
 {

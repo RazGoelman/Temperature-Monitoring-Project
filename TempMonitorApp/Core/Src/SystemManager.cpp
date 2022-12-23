@@ -58,8 +58,17 @@ void sdInit()
 	printf("I was able to open 'logger.txt' for writing\r\n");
 	}
 	else {
-	printf("f_open error (%i)\r\n", fres);
+	printf("f_open logger.txt error (%i)\r\n", fres);
 	}
+	//############################################################################
+	fres = f_open(&fil, "logger2.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+	if(fres == FR_OK) {
+	printf("I was able to open 'logger2.txt' for writing\r\n");
+	}
+	else {
+	printf("f_open logger2.txt error (%i)\r\n", fres);
+	}
+
 }
 void systemManagerInit()
 {
@@ -78,7 +87,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(HAL_GPIO_ReadPin(SW1_GPIO_Port, SW1_Pin) == 0){
 		button.setState(BUTTON_PULLDOWN);
 		dht.setState(TEMP_NO_BUZZER);
-		thresholdsFlash.setCriticalThreshold(DEFAULT_TEMP);
 		buzzer.buzzerStopPlay();
 	}
 	button.setState(BUTTON_PULLUP);

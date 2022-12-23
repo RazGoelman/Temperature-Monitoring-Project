@@ -23,7 +23,7 @@ class _RTC{
 private :
 	I2C_HandleTypeDef * 	_hi2c;
 	uint8_t 				_devAddr;
-	DateTime * 			dateTime;
+	DateTime * 				dateTime;
 
 public:
 
@@ -37,6 +37,7 @@ public:
 	void writeToThresholdFileSD		(const char * data);
 	void writeToNormalFileSD		(const char * data);
 	void readThresholdFileFromSD();
+	void readNormalFileFromSD();
 };
 
 

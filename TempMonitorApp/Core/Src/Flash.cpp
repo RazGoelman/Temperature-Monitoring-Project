@@ -83,11 +83,11 @@ void FLASHCORE :: setWarningThreshold(int warning)
 	status = writeToPage( &_thresholds, (sizeof(THRESHOLDS)));
 	if(status != HAL_OK)
 	{
-		printf("Error in write to page");
+		printf("Error in write Warning Threshold to page");
 	}
 	else
 	{
-		printf("Warning event saved in flash");
+		printf("Warning Threshold saved in flash\n");
 	}
 }
 // setting and save critical level
@@ -104,11 +104,11 @@ void FLASHCORE :: setCriticalThreshold(int critical)
 	status = writeToPage( &_thresholds, (sizeof(THRESHOLDS)));
 	if(status != HAL_OK)
 	{
-		printf("Error in write to page");
+		printf("Error in write Critical Threshold to page");
 	}
 	else
 	{
-		printf("Critical event saved in flash");
+		printf("Critical Threshold saved in flash\n");
 	}
 }
 //get some statistics from the SD card
@@ -120,7 +120,7 @@ void FLASHCORE :: SDData(){
 	fres = f_open(&fil, "logger.txt", FA_READ);
 	if(fres != FR_OK)
 	{
-	  printf("File opening Error : (%i)\r\n", fres);
+	  printf("File opening logger.txt Error SDData: (%i)\r\n", fres);
 	}
 	//Let's get some statistics from the SD card
 	DWORD free_clusters, free_sectors, total_sectors;
@@ -129,7 +129,7 @@ void FLASHCORE :: SDData(){
 
 	fres = f_getfree("logger.txt", &free_clusters, &getFreeFs);
 	if (fres != FR_OK) {
-	printf("f_getfree error (%i)\r\n", fres);
+	printf("f_getfree error SDData (%i)\r\n", fres);
 	while(1);
 	}
 
@@ -146,24 +146,24 @@ void FLASHCORE :: SDData(){
 void FLASHCORE::removeFileFromSD()
 {
 	//Open the file
-			fres = f_open(&fil, "logger.txt", FA_READ);
-			if(fres != FR_OK)
-			{
-			  printf("File opening Error : (%i)\r\n", fres);
-			}
-			//read the data
-			f_gets(buf, sizeof(buf), &fil);
-			printf("Read Data : %s\r\n", buf);
-			//close your file
-			f_close(&fil);
-			printf("Closing File!!!\r\n");
-	#if 0
-			fres = f_unlink("logger.txt");
-			if (fres != FR_OK){
-				printf("Cannot able to delete the file\n");
-			}
-			printf (buf, "*%s* has been removed successfully\n", fres);
-	#endif
+	fres = f_open(&fil, "logger.txt", FA_READ);
+	if(fres != FR_OK)
+	{
+	  printf("File opening Error removeFileFromSD: (%i)\r\n", fres);
+	}
+	//read the data
+	f_gets(buf, sizeof(buf), &fil);
+	printf("Read Data : %s\r\n", buf);
+	//close your file
+	f_close(&fil);
+	printf("Closing File!!!\r\n");
+#if 0
+	fres = f_unlink("logger.txt");
+	if (fres != FR_OK){
+		printf("Cannot able to delete the file\n");
+	}
+	printf (buf, "*%s* has been removed successfully\n", fres);
+#endif
 
 
 }

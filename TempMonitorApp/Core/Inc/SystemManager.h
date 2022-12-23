@@ -18,6 +18,7 @@ extern "C" {
 
 
 void systemManagerInit();
+void sdInit();
 void StartDht				(void *argument);
 void StartcommTask			(void *argument);
 void StartFlashTask			(void *argument);

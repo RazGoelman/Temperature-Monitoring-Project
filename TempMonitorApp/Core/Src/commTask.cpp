@@ -17,8 +17,6 @@ using namespace std;
 
 uint8_t cmdbuffer					[MAX_BUFFER_LENGTH];
 
-//int cmdcount 						= 0;
-//int cmdprint 						= 0;
 
 extern CliContainer container;
 extern UART_HandleTypeDef huart2;

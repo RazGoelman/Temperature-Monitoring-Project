@@ -210,17 +210,33 @@ public:
 	}
 };
 
-class readSDCard : public Cli{
+class readThresholdSDCard : public Cli{
 private:
 	_RTC * _rtc;
 public:
-	readSDCard(_RTC * rtc)
+	readThresholdSDCard(_RTC * rtc)
 	{
 		_rtc = rtc;
 	}
 	void doCommand(const char * param) override{
 
 		_rtc->readThresholdFileFromSD();
+	}
+
+private:
+};
+
+class readNormalSDCard : public Cli{
+private:
+	_RTC * _rtc;
+public:
+	readNormalSDCard(_RTC * rtc)
+	{
+		_rtc = rtc;
+	}
+	void doCommand(const char * param) override{
+
+		_rtc->readNormalFileFromSD();
 	}
 
 private:
@@ -318,11 +334,11 @@ public:
 //////////////////////////////////////////////////////////////////////
 //SD Card
 /////////////////////////////////////////////////////////////////////
- class PrintSDData : public Cli {
+ class PrintThresholdData : public Cli {
 private:
 	FLASHCORE* _flash;
 public:
-	PrintSDData()
+	PrintThresholdData()
 	{
 	}
 	void doCommand(const char* param) override{
@@ -330,11 +346,11 @@ public:
 	}
 };
 
-class RemoveFileSDCard : public Cli {
+class RemoveThresholdFileSDCard : public Cli {
 private:
 	 FLASHCORE* _flash;
 public:
-	 RemoveFileSDCard()
+	 RemoveThresholdFileSDCard()
 	 {
 	 }
 	 void doCommand(const char* param) override{

@@ -284,9 +284,7 @@ public:
 
 	void doCommand(const char* param) {
 		_warningTempThreshold = atof(param);
-		//warningThreshold = _warningTempThreshold;
 		thresholdsFlash.setWarningThreshold(_warningTempThreshold);
-		//thresholdsFlash.flash_write(THRESHOLDS_PAGE_256, warningThreshold, double __warningTempThreshold));
 	}
 };
 
@@ -301,7 +299,6 @@ public:
 
 	void doCommand(const char* param) {
 		_criticalTempThreshold = atof(param);
-		//criticalThreshold = _criticalTempThreshold;
 		thresholdsFlash.setCriticalThreshold(_criticalTempThreshold);
 	}
 };
@@ -334,7 +331,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 //SD Card
 /////////////////////////////////////////////////////////////////////
- class PrintThresholdData : public Cli {
+class PrintThresholdData : public Cli {
 private:
 	FLASHCORE* _flash;
 public:

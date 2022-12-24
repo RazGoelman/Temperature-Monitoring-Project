@@ -35,10 +35,10 @@ private:
 public:
 	FLASHCORE(uint32_t pageAddr, uint32_t nbPage)
 	{
-		_pageAddr = 	pageAddr;
-		_page = 		(_pageAddr - 0x08000000) / PAGE_SIZE;
-		_bank = 		_page < 256 ? 1 : 2;
-		_nbPages = 		nbPage;
+		_pageAddr 	 = 	pageAddr;
+		_page 		 = 	(_pageAddr - 0x08000000) / PAGE_SIZE;
+		_bank 		 = 	_page < 256 ? 1 : 2;
+		_nbPages 	 = 	nbPage;
 		_typeProgram = 	FLASH_TYPEPROGRAM_DOUBLEWORD;
 	}
 	HAL_StatusTypeDef erasePage();

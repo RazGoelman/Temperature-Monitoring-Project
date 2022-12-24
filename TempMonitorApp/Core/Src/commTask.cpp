@@ -51,8 +51,8 @@ int CommTASK::commTask()
 	HAL_UART_Transmit(&huart2, (uint8_t*) "\r\n", 2, 0xFFFF);
 
 	cmdbuffer[_cmdcount] = 0;
-	_cmdcount 			= 0;
-	_cmdprint 			= 0;
+	_cmdcount 			 = 0;
+	_cmdprint 			 = 0;
 	return 1;
 }
 void CommTASK::handleCommand()

@@ -23,28 +23,28 @@
 ../Core/Inc/Cli.h:269:7:virtual void buzzeroff::doCommand(const char*)	16	static
 ../Core/Inc/Cli.h:280:2:WarningTempThreshold::WarningTempThreshold()	16	static
 ../Core/Inc/Cli.h:285:7:virtual void WarningTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:297:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:302:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:315:2:GetTempThresholdInfo::GetTempThresholdInfo()	16	static
-../Core/Inc/Cli.h:318:7:virtual void GetTempThresholdInfo::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:341:2:PrintThresholdData::PrintThresholdData()	16	static
-../Core/Inc/Cli.h:344:7:virtual void PrintThresholdData::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:353:3:RemoveThresholdFileSDCard::RemoveThresholdFileSDCard()	16	static
-../Core/Inc/Cli.h:356:8:virtual void RemoveThresholdFileSDCard::doCommand(const char*)	16	static
-../Core/Inc/Cli.h:370:2:helpCMD::helpCMD()	16	static
-../Core/Inc/Cli.h:373:7:virtual void helpCMD::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:295:2:CriticalTempThreshold::CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:300:7:virtual void CriticalTempThreshold::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:312:2:GetTempThresholdInfo::GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:315:7:virtual void GetTempThresholdInfo::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:338:2:PrintThresholdData::PrintThresholdData()	16	static
+../Core/Inc/Cli.h:341:7:virtual void PrintThresholdData::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:350:3:RemoveThresholdFileSDCard::RemoveThresholdFileSDCard()	16	static
+../Core/Inc/Cli.h:353:8:virtual void RemoveThresholdFileSDCard::doCommand(const char*)	16	static
+../Core/Inc/Cli.h:367:2:helpCMD::helpCMD()	16	static
+../Core/Inc/Cli.h:370:7:virtual void helpCMD::doCommand(const char*)	16	static
 ../Core/Src/Cli.cpp:27:6:void CliContainer::PrintCommand()	24	static
 ../Core/Src/Cli.cpp:38:6:void CliContainer::initCLIcontainer()	24	static
-../Core/Inc/Cli.h:366:7:helpCMD::~helpCMD()	16	static
-../Core/Inc/Cli.h:366:7:virtual helpCMD::~helpCMD()	16	static
-../Core/Inc/Cli.h:349:7:RemoveThresholdFileSDCard::~RemoveThresholdFileSDCard()	16	static
-../Core/Inc/Cli.h:349:7:virtual RemoveThresholdFileSDCard::~RemoveThresholdFileSDCard()	16	static
-../Core/Inc/Cli.h:337:8:PrintThresholdData::~PrintThresholdData()	16	static
-../Core/Inc/Cli.h:337:8:virtual PrintThresholdData::~PrintThresholdData()	16	static
-../Core/Inc/Cli.h:310:7:GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
-../Core/Inc/Cli.h:310:7:virtual GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
-../Core/Inc/Cli.h:293:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
-../Core/Inc/Cli.h:293:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:363:7:helpCMD::~helpCMD()	16	static
+../Core/Inc/Cli.h:363:7:virtual helpCMD::~helpCMD()	16	static
+../Core/Inc/Cli.h:346:7:RemoveThresholdFileSDCard::~RemoveThresholdFileSDCard()	16	static
+../Core/Inc/Cli.h:346:7:virtual RemoveThresholdFileSDCard::~RemoveThresholdFileSDCard()	16	static
+../Core/Inc/Cli.h:334:7:PrintThresholdData::~PrintThresholdData()	16	static
+../Core/Inc/Cli.h:334:7:virtual PrintThresholdData::~PrintThresholdData()	16	static
+../Core/Inc/Cli.h:307:7:GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:307:7:virtual GetTempThresholdInfo::~GetTempThresholdInfo()	16	static
+../Core/Inc/Cli.h:291:7:CriticalTempThreshold::~CriticalTempThreshold()	16	static
+../Core/Inc/Cli.h:291:7:virtual CriticalTempThreshold::~CriticalTempThreshold()	16	static
 ../Core/Inc/Cli.h:276:7:WarningTempThreshold::~WarningTempThreshold()	16	static
 ../Core/Inc/Cli.h:276:7:virtual WarningTempThreshold::~WarningTempThreshold()	16	static
 ../Core/Inc/Cli.h:261:7:buzzeroff::~buzzeroff()	16	static

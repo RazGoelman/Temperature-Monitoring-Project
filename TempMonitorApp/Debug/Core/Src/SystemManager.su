@@ -13,7 +13,7 @@
 ../Core/Src/SystemManager.cpp:73:6:void systemManagerInit()	8	static
 ../Core/Src/SystemManager.cpp:83:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
 ../Core/Src/SystemManager.cpp:95:17:void StartcommTask(void*)	16	static
-../Core/Src/SystemManager.cpp:113:17:void StartDht(void*)	40	static
+../Core/Src/SystemManager.cpp:113:17:void StartDht(void*)	32	static
 ../Core/Src/SystemManager.cpp:168:17:void StartFlashTask(void*)	72	static
 ../Core/Src/SystemManager.cpp:200:1:void __static_initialization_and_destruction_0(int, int)	16	static
 ../Core/Src/SystemManager.cpp:200:1:cpp)	8	static

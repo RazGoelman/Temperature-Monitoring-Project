@@ -43,7 +43,7 @@ FATFS 	FatFs; 	  //Fatfs handle
 FIL 	fil; 	//File handle
 FRESULT fres; //Result after operations
 char 	Buf[100];
-
+int Maxcounter = 0;
 
 
 // Initialized SD card file
@@ -112,7 +112,7 @@ int mixcounter = xTaskGetTickCount();
 // this task measure ever one second the temperature.
 extern "C" void StartDht(void *argument)
 {
-	int Maxcounter = HAL_GetTick();
+	Maxcounter = HAL_GetTick();
 	osDelayUntil(mixcounter);
 	while(1)
 	{

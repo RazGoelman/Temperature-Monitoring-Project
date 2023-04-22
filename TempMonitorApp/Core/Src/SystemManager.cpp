@@ -27,7 +27,7 @@ extern  TIM_HandleTypeDef htim3;
 extern  I2C_HandleTypeDef hi2c1;
 
 
-// Initialized parameters
+//? Initialized parameters
 Btn button 					= 	Btn(SW1_GPIO_Port, SW1_Pin);
 Dht dht 					= 	Dht(DHT_GPIO_Port, DHT_Pin, &htim6);
 LED ledblue 				= 	LED(ledB_GPIO_Port, ledB_Pin);
@@ -38,7 +38,7 @@ FLASHCORE thresholdsFlash 	= 	FLASHCORE (THRESHOLDS_PAGE, 1);
 CliContainer container 		= 	CliContainer();
 CommTASK commtask 			=	CommTASK();
 
-//variables for FatFs
+//? variables for FatFs
 FATFS 	FatFs; 	  //Fatfs handle
 FIL 	fil; 	//File handle
 FRESULT fres; //Result after operations
@@ -46,10 +46,10 @@ char 	Buf[100];
 int Maxcounter = 0;
 
 
-// Initialized SD card file
+//? Initialized SD card file
 void sdInit()
 {
-	fres = f_mount(&FatFs, "", 1); //1=mount now
+	fres = f_mount(&FatFs, "", 1); //*1=mount now
 	if (fres != FR_OK) {
 	printf("f_mount error (%i)\r\n", fres);
 	}
@@ -91,10 +91,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 	button.setState(BUTTON_PULLUP);
 }
-// this task will start the cli option for the user.
+//? this task will start the cli option for the user.
 extern "C" void StartcommTask(void *argument)
 {
-	/* Infinite loop */
+	//* Infinite loop 
 	for (;;) {
 
 		if (commtask.commTask()) {
@@ -107,9 +107,9 @@ extern "C" void StartcommTask(void *argument)
 	osThreadTerminate(osThreadGetId());
 }
 
-// counter which manages the DHT task and write to SD card task
+//? counter which manages the DHT task and write to SD card task
 int mixcounter = xTaskGetTickCount();
-// this task measure ever one second the temperature.
+//? this task measure ever one second the temperature.
 extern "C" void StartDht(void *argument)
 {
 	Maxcounter = HAL_GetTick();
@@ -117,7 +117,7 @@ extern "C" void StartDht(void *argument)
 	while(1)
 	{
 
-		// The temperature reading failed
+		//? The temperature reading failed
 		if(dht.read() != HAL_OK)
 		{
 			dht.setState(TEMP_ERROR);
@@ -125,12 +125,12 @@ extern "C" void StartDht(void *argument)
 
 		}
 		else{
-			/*change temperature sensor state
-			  change  led state
-			  change button
-			  threshold  write into the threshold-log file
-			  Normal temperature write into the normal log file
-			  */
+			//? change temperature sensor state
+			//? change  led state
+			//? change button
+			//? threshold  write into the threshold-log file
+			//? Normal temperature write into the normal log file
+			  
 
 			if (dht.getTemp() >= thresholdsFlash.getCriticalThreshold()) {
 					dht.setState(TEMP_CRITICAL);
@@ -160,11 +160,11 @@ extern "C" void StartDht(void *argument)
 		osDelayUntil((mixcounter)+ONE_SECOND);
 
 	}
-	//Required to exit the task function osThreadTerminate must be used
+	//? Required to exit the task function osThreadTerminate must be used
 	osThreadTerminate(osThreadGetId());
 }
 
-// this task will write the thresholds into the file.
+//? this task will write the thresholds into the file.
 extern "C" void StartFlashTask(void *argument)
 {
 	for(;;){
